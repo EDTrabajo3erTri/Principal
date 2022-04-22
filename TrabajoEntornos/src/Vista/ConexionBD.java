@@ -9,7 +9,7 @@ public class ConexionBD {
 	public static Connection conectar(){
 		try {
 			//	TENEMOS QUE CAMBIAR EL NOMBRE DE LA BB.DD!!!
-			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/nombredelabasededatos","root","");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio","root","");
 			System.out.println("Conexión establecida");
 			Statement consulta = conexion.createStatement();
 			conexion.close();

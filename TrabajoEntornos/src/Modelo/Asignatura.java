@@ -1,20 +1,20 @@
 package Modelo;
 
 public class Asignatura {
-	String nombre;
-	int codigo;
-	String DNIProfesor;
+	private String nombre;
+	private int codigoAsignatura;
+	private String dniProfesor;
 	
 	public Asignatura() {
 		nombre = null;
-		codigo = 0;
-		DNIProfesor = null;
+		codigoAsignatura = 0;
+		dniProfesor = null;
 	}
 
 	public Asignatura(String nombre, int codigo, String dNIProfesor) {
 		this.nombre = nombre;
-		this.codigo = codigo;
-		DNIProfesor = dNIProfesor;
+		this.codigoAsignatura = codigoAsignatura;
+		dniProfesor = dNIProfesor;
 	}
 
 	public String getNombre() {
@@ -25,21 +25,22 @@ public class Asignatura {
 		this.nombre = nombre;
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public int getCodigoAsignatura() {
+		return codigoAsignatura;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigoAsignatura(int codigoAsignatura) {
+		this.codigoAsignatura = codigoAsignatura;
 	}
 
-	public String getDNIProfesor() {
-		return DNIProfesor;
+	public String getDniProfesor() {
+		return dniProfesor;
 	}
 
-	public void setDNIProfesor(String dNIProfesor) {
-		DNIProfesor = dNIProfesor;
+	public void setDniProfesor(String dniProfesor) {
+		this.dniProfesor = dniProfesor;
 	}
+
 	
 	
 	

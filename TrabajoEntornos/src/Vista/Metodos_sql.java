@@ -13,21 +13,21 @@ public class Metodos_sql {
 	public static String sql;
 	public static int resultado_numero = 0;
 	
-	public int guardar(String nombre, String apellidos, String correo, String contraseña) {
+	public int guardar(String nombre, String apellido1, String apellido2, String dniAlumno) {
 		
 		int resultado = 0;
 		Connection conexion = null;
 		
 		//	SE NECESITA CREAR LA BASE DE DATOS Y LAS TABLAS PARA COMPLETAR ESTA PARTE!!! (VIDEO 3)
-		String sentencia_guardar = ("INSERT INTO nombreTabla () VALUES (?,?,?,?)"); //	En VALUES se ponen (?) ya que no sabemos que valor le va a dar el usuario
+		String sentencia_guardar = ("INSERT INTO alumnos (nombre, apellido1, apellido2, dniAlumno) VALUES (?,?,?,?)"); //	En VALUES se ponen (?) ya que no sabemos que valor le va a dar el usuario
 		
 		try {
 			conexion = ConexionBD.conectar();
 			sentencia_preparada = conexion.prepareStatement(sentencia_guardar);
 			sentencia_preparada.setString(1, nombre);
-			sentencia_preparada.setString(2, apellidos);
-			sentencia_preparada.setString(3, correo);
-			sentencia_preparada.setString(4, contraseña);
+			sentencia_preparada.setString(2, apellido1);
+			sentencia_preparada.setString(3, apellido2);
+			sentencia_preparada.setString(4, dniAlumno);
 			
 			resultado = sentencia_preparada.executeUpdate();
 			sentencia_preparada.close();

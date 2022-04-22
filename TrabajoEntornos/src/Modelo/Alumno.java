@@ -1,22 +1,21 @@
 package Modelo;
 
 public class Alumno {
-	String nombre;
-	String apellido1;
-	String apellido2;
-	String dni;
-	int curso;
-	int codigo_asignatura;
-	String dniProfesor;
+	private String nombre;
+	private String apellido1;
+	private String apellido2;
+	private String dniAlumno;
+	private int curso;
+	private int codigo_asignatura;
+
 	
 	public Alumno() {
 		nombre = null;
 		apellido1 = null;
 		apellido2 = null;
-		dni = null;
+		dniAlumno = null;
 		curso = 0;
 		codigo_asignatura = 0;
-		dniProfesor = null;
 	}
 
 	public Alumno(String nombre, String apellido1, String apellido2, String dni, int curso, int codigo_asignatura,
@@ -24,10 +23,9 @@ public class Alumno {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
-		this.dni = dni;
+		this.dniAlumno = dniAlumno;
 		this.curso = curso;
 		this.codigo_asignatura = codigo_asignatura;
-		this.dniProfesor = dniProfesor;
 	}
 
 	public String getNombre() {
@@ -54,12 +52,12 @@ public class Alumno {
 		this.apellido2 = apellido2;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDniAlumno() {
+		return dniAlumno;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDniAlumno(String dniAlumno) {
+		this.dniAlumno = dniAlumno;
 	}
 
 	public int getCurso() {
@@ -78,14 +76,6 @@ public class Alumno {
 		this.codigo_asignatura = codigo_asignatura;
 	}
 
-	public String getDniProfesor() {
-		return dniProfesor;
-	}
-
-	public void setDniProfesor(String dniProfesor) {
-		this.dniProfesor = dniProfesor;
-	}
-	
 	
 	
 	

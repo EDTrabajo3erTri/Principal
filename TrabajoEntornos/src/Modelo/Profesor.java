@@ -1,23 +1,23 @@
 package Modelo;
 
 public class Profesor {
-	String nombre;
-	String apellido1;
-	String apellido2;
-	String dni;
+	private String nombre;
+	private String apellido1;
+	private String apellido2;
+	private String dniProfesor;
 	
 	public Profesor() {
 		nombre = null;
 		apellido1 = null;
 		apellido2 = null;
-		dni = null;
+		dniProfesor = null;
 	}
 
 	public Profesor(String nombre, String apellido1, String apellido2, String dni) {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
-		this.dni = dni;
+		this.dniProfesor = dniProfesor;
 	}
 
 	public String getNombre() {
@@ -44,14 +44,15 @@ public class Profesor {
 		this.apellido2 = apellido2;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDniProfesor() {
+		return dniProfesor;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDniProfesor(String dniProfesor) {
+		this.dniProfesor = dniProfesor;
 	}
-	
+
+
 	
 	
 	
