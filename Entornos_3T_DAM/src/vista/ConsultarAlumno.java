@@ -87,7 +87,6 @@ public class ConsultarAlumno extends JPanel {
 						String filtroConsultaAlumno;
 						filtroConsultaAlumno = txtNombre.getText();
 						
-						
 						arrAlumnos = bd.cargaAlumno(filtroConsultaAlumno);
 						table.setModel(new DefaultTableModel(nombresTabla, arrAlumnos.size()));
 							
@@ -102,6 +101,7 @@ public class ConsultarAlumno extends JPanel {
 						}
 					}
 				});
+				
 				btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 				btnBuscar.setBackground(Color.WHITE);
 				btnBuscar.setBounds(445, 86, 116, 35);

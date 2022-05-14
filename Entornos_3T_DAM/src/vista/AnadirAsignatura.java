@@ -4,16 +4,26 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
+
+import controlador.ConexionBD;
+import modelo.Asignatura;
+
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AnadirAsignatura extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextPane txtAgregarAsignatura;
+	private JTextField txtNombre, txtCurso, txtHorasSemanales, txtHorasAnuales;
+	private JLabel lblNombre, lblCurso, lblHorasSemanales, lblHorasAnuales, lblLogoJUANXXIII;
+	private JButton btnAgregar, btnLimpiar;
+	
+	ConexionBD bd = new ConexionBD();
+	Asignatura asig = new Asignatura();
 
 	/**
 	 * Create the panel.
@@ -23,69 +33,92 @@ public class AnadirAsignatura extends JPanel {
 		setLayout(null);
 		setBounds(100, 100, 800, 500);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("img/Logojuan.jpg"));
-		lblNewLabel.setBounds(385, 53, 389, 360);
-		add(lblNewLabel);
+		lblLogoJUANXXIII = new JLabel("");
+		lblLogoJUANXXIII.setIcon(new ImageIcon("img/Logojuan.jpg"));
+		lblLogoJUANXXIII.setBounds(385, 53, 389, 360);
+		add(lblLogoJUANXXIII);
 		
-		JTextPane txtpnAgregarAlumno = new JTextPane();
-		txtpnAgregarAlumno.setEditable(false);
-		txtpnAgregarAlumno.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
-		txtpnAgregarAlumno.setText("Agregar Asignatura");
-		txtpnAgregarAlumno.setBounds(74, 11, 275, 54);
-		add(txtpnAgregarAlumno);
+		txtAgregarAsignatura = new JTextPane();
+		txtAgregarAsignatura.setEditable(false);
+		txtAgregarAsignatura.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
+		txtAgregarAsignatura.setText("Agregar Asignatura");
+		txtAgregarAsignatura.setBounds(74, 11, 275, 54);
+		add(txtAgregarAsignatura);
 		
-		textField = new JTextField();
-		textField.setBounds(183, 123, 192, 20);
-		add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(183, 123, 192, 20);
+		add(txtNombre);
+		txtNombre.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(183, 161, 192, 20);
-		add(textField_1);
+		txtCurso = new JTextField();
+		txtCurso.setColumns(10);
+		txtCurso.setBounds(183, 161, 192, 20);
+		add(txtCurso);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Curso:");
-		lblNewLabel_2_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNewLabel_2_1.setBounds(35, 158, 138, 20);
-		add(lblNewLabel_2_1);
+		lblCurso = new JLabel("Curso:");
+		lblCurso.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblCurso.setBounds(35, 158, 138, 20);
+		add(lblCurso);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("Nombre:");
-		lblNewLabel_2_2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNewLabel_2_2.setBounds(35, 120, 138, 20);
-		add(lblNewLabel_2_2);
+		lblNombre = new JLabel("Nombre:");
+		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblNombre.setBounds(35, 120, 138, 20);
+		add(lblNombre);
 		
-		JButton btnNewButton = new JButton("Agregar");
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		btnNewButton.setBounds(35, 321, 116, 35);
-		add(btnNewButton);
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setBackground(Color.WHITE);
+		btnAgregar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnAgregar.setBounds(35, 321, 116, 35);
+		add(btnAgregar);
 		
-		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnLimpiar.setBackground(Color.WHITE);
 		btnLimpiar.setBounds(233, 321, 116, 35);
 		add(btnLimpiar);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("Horas Semanales:");
-		lblNewLabel_2_1_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNewLabel_2_1_1.setBounds(35, 199, 138, 20);
-		add(lblNewLabel_2_1_1);
+		lblHorasSemanales = new JLabel("Horas Semanales:");
+		lblHorasSemanales.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblHorasSemanales.setBounds(35, 199, 138, 20);
+		add(lblHorasSemanales);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(183, 202, 192, 20);
-		add(textField_2);
+		txtHorasSemanales = new JTextField();
+		txtHorasSemanales.setColumns(10);
+		txtHorasSemanales.setBounds(183, 202, 192, 20);
+		add(txtHorasSemanales);
 		
-		JLabel lblNewLabel_2_1_1_1 = new JLabel("Horas Semanales:");
-		lblNewLabel_2_1_1_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNewLabel_2_1_1_1.setBounds(35, 241, 138, 20);
-		add(lblNewLabel_2_1_1_1);
+		lblHorasAnuales = new JLabel("Horas Anuales:");
+		lblHorasAnuales.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblHorasAnuales.setBounds(35, 241, 138, 20);
+		add(lblHorasAnuales);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(183, 244, 192, 20);
-		add(textField_3);
+		txtHorasAnuales = new JTextField();
+		txtHorasAnuales.setColumns(10);
+		txtHorasAnuales.setBounds(183, 244, 192, 20);
+		add(txtHorasAnuales);
+
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				asig.setNombreAsignatura(txtNombre.getText());
+				asig.setNombreCurso(Integer.parseInt(txtCurso.getText().toString()));
+				asig.setHorasAsignaturaSemanal(Integer.parseInt(txtHorasSemanales.getText().toString()));
+				asig.setHorasAsignaturaAnual(Integer.parseInt(txtHorasAnuales.getText().toString()));
+				bd.agregarAsignatura(asig);
+				JOptionPane.showMessageDialog(null, "EL COCHE HA SIDO AGREGADO CORRECTAMENTE", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos introducidos?", "¡CUIDADO!", JOptionPane.YES_NO_OPTION);
+				
+				if(JOptionPane.OK_OPTION == valor) {
+					txtNombre.setText("");
+					txtCurso.setText("");
+					txtHorasSemanales.setText("");
+					txtHorasAnuales.setText("");
+				}
+			}
+		});
 	}
 }
