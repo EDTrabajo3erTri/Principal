@@ -16,7 +16,7 @@ CREATE TABLE alumnos(
 
 CREATE TABLE asignaturas(
 	idAsignatura INT(5) AUTO_INCREMENT,
-	nombreAsignatura VARCHAR(40),
+	nombreAsignatura VARCHAR(80),
 	curso VARCHAR(10),
 	horasAsignaturaSemanal INT (10),
 	horasAsignaturaAnual INT(10),
