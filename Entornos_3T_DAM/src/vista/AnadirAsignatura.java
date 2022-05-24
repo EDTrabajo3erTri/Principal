@@ -100,11 +100,11 @@ public class AnadirAsignatura extends JPanel {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				asig.setNombreAsignatura(txtNombre.getText());
-				asig.setNombreCurso(Integer.parseInt(txtCurso.getText().toString()));
+				asig.setNombreCurso(txtCurso.getText());
 				asig.setHorasAsignaturaSemanal(Integer.parseInt(txtHorasSemanales.getText().toString()));
 				asig.setHorasAsignaturaAnual(Integer.parseInt(txtHorasAnuales.getText().toString()));
 				bd.agregarAsignatura(asig);
-				JOptionPane.showMessageDialog(null, "EL COCHE HA SIDO AGREGADO CORRECTAMENTE", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "LA ASIGNATURA HA SIDO AGREGADA CORRECTAMENTE", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		

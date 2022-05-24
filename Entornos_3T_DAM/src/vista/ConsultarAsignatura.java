@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -15,15 +16,24 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import modelo.Alumno;
+import controlador.ConexionBD;
+import modelo.Asignatura;
 
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ConsultarAsignatura extends JPanel {
-	private JTextField textField;
+	private JTextPane txtConsultarAsignatura;
+	private JLabel lblNombre;
+	private JTextField txtNombre;
+	private JScrollPane scrollPane;
 	private JTable table;
-	ArrayList<Alumno> arrAlumnos = new ArrayList();
+	private JButton btnBuscar, btnBorrar;
+	
+	ConexionBD bd = new ConexionBD();
+	ArrayList<Asignatura> arrAsignaturas = new ArrayList();
 	
 	/**
 	 * Create the panel.
@@ -33,24 +43,24 @@ public class ConsultarAsignatura extends JPanel {
 		setLayout(null);
 		setBounds(100, 100, 800, 500);
 		
-		JTextPane txtpnBorrarAlumno = new JTextPane();
-		txtpnBorrarAlumno.setText("Consultar Asignatura");
-		txtpnBorrarAlumno.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
-		txtpnBorrarAlumno.setEditable(false);
-		txtpnBorrarAlumno.setBounds(115, 11, 306, 54);
-		add(txtpnBorrarAlumno);
+		txtConsultarAsignatura = new JTextPane();
+		txtConsultarAsignatura.setText("Consultar Asignatura");
+		txtConsultarAsignatura.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
+		txtConsultarAsignatura.setEditable(false);
+		txtConsultarAsignatura.setBounds(115, 11, 306, 54);
+		add(txtConsultarAsignatura);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(182, 101, 192, 20);
-		add(textField);
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(182, 101, 192, 20);
+		add(txtNombre);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("Nombre:");
-		lblNewLabel_2_2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNewLabel_2_2.setBounds(34, 98, 138, 20);
-		add(lblNewLabel_2_2);
+		lblNombre = new JLabel("Nombre:");
+		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblNombre.setBounds(34, 98, 138, 20);
+		add(lblNombre);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 165, 738, 220);
 		add(scrollPane);
 		
@@ -59,26 +69,55 @@ public class ConsultarAsignatura extends JPanel {
 		scrollPane.setViewportView(table);
 		
 				
-				Vector nombresTabla = new Vector();
+		Vector nombresTabla = new Vector();
 				
-				nombresTabla.add("Id");
-				nombresTabla.add("Nombre");
-				nombresTabla.add("Curso");
-				nombresTabla.add("Horas Semanales");
-				nombresTabla.add("Horas Anuales");
+		nombresTabla.add("Id");
+		nombresTabla.add("Nombre");
+		nombresTabla.add("Curso");
+		nombresTabla.add("Horas Semanales");
+		nombresTabla.add("Horas Anuales");
 				
-				table.setModel(new DefaultTableModel(nombresTabla, arrAlumnos.size()));
+		table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
 				
-				JButton btnBuscar = new JButton("Buscar");
-				btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-				btnBuscar.setBackground(Color.WHITE);
-				btnBuscar.setBounds(445, 86, 116, 35);
-				add(btnBuscar);
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnBuscar.setBackground(Color.WHITE);
+		btnBuscar.setBounds(445, 86, 116, 35);
+		add(btnBuscar);
 				
-				JButton btnBorrar = new JButton("Borrar");
-				btnBorrar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-				btnBorrar.setBackground(Color.WHITE);
-				btnBorrar.setBounds(622, 86, 116, 35);
-				add(btnBorrar);
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnBorrar.setBackground(Color.WHITE);
+		btnBorrar.setBounds(622, 86, 116, 35);
+		add(btnBorrar);
+		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String filtroConsultaAsignatura;
+				filtroConsultaAsignatura = txtNombre.getText();
+				
+				arrAsignaturas = bd.cargaAsignatura(filtroConsultaAsignatura);
+				table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+					
+				for (int i=0;i<arrAsignaturas.size();i++) {
+					table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
+					table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 1);
+					table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 2);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 3);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 4);
+				}
+			}
+		});
+		
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos de la tabla y el texto intoducido?", "¡CUIDADO!", JOptionPane.YES_NO_OPTION);
+				
+				if(JOptionPane.OK_OPTION == valor) {
+					txtNombre.setText("");
+					table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+				}
+			}
+		});
 	}
 }

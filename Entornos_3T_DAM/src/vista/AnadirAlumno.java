@@ -20,7 +20,7 @@ public class AnadirAlumno extends JPanel {
 	private JTextPane txtAgregarAlumno;
 	private JTextField txtNombre, txtApellido1, txtApellido2, txtDNI, txtDireccion, txtFechaNacimiento, txtTelefono;
 	private JLabel lblNombre, lblApellido1, lblApellido2, lblDNI, lblDireccion, lblFechaNacimiento, lblTelefono, lblLogoJUANXXIII;
-	private JButton btnNewButton, btnLimpiar;
+	private JButton btnAgregar, btnLimpiar;
 	
 	ConexionBD bd = new ConexionBD();
 	Alumno alum = new Alumno();
@@ -75,11 +75,11 @@ public class AnadirAlumno extends JPanel {
 		lblNombre.setBounds(35, 120, 138, 20);
 		add(lblNombre);
 		
-		btnNewButton = new JButton("Agregar");
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		btnNewButton.setBounds(35, 378, 116, 35);
-		add(btnNewButton);
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setBackground(Color.WHITE);
+		btnAgregar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnAgregar.setBounds(35, 378, 116, 35);
+		add(btnAgregar);
 		
 		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
@@ -127,7 +127,7 @@ public class AnadirAlumno extends JPanel {
 		txtTelefono.setBounds(183, 326, 192, 20);
 		add(txtTelefono);
 
-		btnNewButton.addActionListener(new ActionListener() {
+		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alum.setNombreAlumno(txtNombre.getText());
 				alum.setApellido1Alumno(txtApellido1.getText());
@@ -137,7 +137,7 @@ public class AnadirAlumno extends JPanel {
 				alum.setFechaNacimiento(Integer.parseInt(txtFechaNacimiento.getText().toString()));
 				alum.setTelefonoAlumno(txtTelefono.getText());
 				bd.agregarAlumno(alum);
-				JOptionPane.showMessageDialog(null, "EL COCHE HA SIDO AGREGADO CORRECTAMENTE", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "EL ALUMNO HA SIDO AGREGADO CORRECTAMENTE", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		

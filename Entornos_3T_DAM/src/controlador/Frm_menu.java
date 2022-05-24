@@ -49,13 +49,11 @@ public class Frm_menu extends JFrame {
 				if(txtCorreo.getText().equals("administrador") && txtContraseña.getText().equals("administrador")) {
                     JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesión como root (Administrador)", "ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE);
                     OpcionAdmin ventana = new OpcionAdmin();
-                    //ventana.lblNombre.setText("Administrador");
                     ventana.setVisible(true);
                     dispose();
                 }else if(txtCorreo.getText().equals("alumno") && txtContraseña.getText().equals("alumno")) {
                     JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesión como (Alumno)", "ALUMNO", JOptionPane.INFORMATION_MESSAGE);
                     OpcionVisitante ventana = new OpcionVisitante();
-                    //ventana.lblNombre.setText("Administrador");
                     ventana.setVisible(true);
                     dispose();
                 }else {
@@ -72,23 +70,23 @@ public class Frm_menu extends JFrame {
 		lblLogo.setBounds(0, 0, 172, 68);
 		contentPane.add(lblLogo);
 		
-		JLabel lblCorreo = new JLabel("Correo:");
-		lblCorreo.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lblCorreo.setBounds(465, 195, 96, 14);
-		contentPane.add(lblCorreo);
+		JLabel lblInicioDeSesión = new JLabel("Inicio de Sesi\u00F3n:");
+		lblInicioDeSesión.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lblInicioDeSesión.setBounds(465, 195, 114, 14);
+		contentPane.add(lblInicioDeSesión);
 		
 		lblContraseña = new JLabel("Contrase\u00F1a:");
 		lblContraseña.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lblContraseña.setBounds(465, 220, 96, 14);
+		lblContraseña.setBounds(465, 220, 114, 14);
 		contentPane.add(lblContraseña);
 		
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(571, 195, 90, 14);
+		txtCorreo.setBounds(589, 195, 90, 14);
 		contentPane.add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
 		txtContraseña = new JPasswordField();
-		txtContraseña.setBounds(571, 220, 90, 14);
+		txtContraseña.setBounds(589, 220, 90, 14);
 		contentPane.add(txtContraseña);
 		
 		lblIconoPrincipal = new JLabel("");

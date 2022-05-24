@@ -3,27 +3,37 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JSpinner;
-import javax.swing.JScrollBar;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import modelo.Alumno;
+import controlador.ConexionBD;
+import modelo.Asignatura;
 
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BorrarAsignatura extends JPanel {
-	private JTextField textField;
+	private JTextPane txtBorrarAsignatura;
+	private JLabel lblNombre;
+	private JTextField txtNombre;
+	private JScrollPane scrollPane;
 	private JTable table;
-	ArrayList<Alumno> arrAlumnos = new ArrayList();
+	private JButton btnBuscar, btnLimpiar, btnEliminar;
+	
+	ConexionBD bd = new ConexionBD();
+	ArrayList<Asignatura> arrAsignaturas = new ArrayList();
 	
 	/**
 	 * Create the panel.
@@ -33,24 +43,24 @@ public class BorrarAsignatura extends JPanel {
 		setLayout(null);
 		setBounds(100, 100, 800, 500);
 		
-		JTextPane txtpnBorrarAlumno = new JTextPane();
-		txtpnBorrarAlumno.setText("Borrar Asignatura");
-		txtpnBorrarAlumno.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
-		txtpnBorrarAlumno.setEditable(false);
-		txtpnBorrarAlumno.setBounds(115, 11, 257, 54);
-		add(txtpnBorrarAlumno);
+		txtBorrarAsignatura = new JTextPane();
+		txtBorrarAsignatura.setText("Borrar Asignatura");
+		txtBorrarAsignatura.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
+		txtBorrarAsignatura.setEditable(false);
+		txtBorrarAsignatura.setBounds(115, 11, 257, 54);
+		add(txtBorrarAsignatura);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(182, 101, 192, 20);
-		add(textField);
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(182, 101, 192, 20);
+		add(txtNombre);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("Nombre:");
-		lblNewLabel_2_2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNewLabel_2_2.setBounds(34, 98, 138, 20);
-		add(lblNewLabel_2_2);
+		lblNombre = new JLabel("Nombre:");
+		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblNombre.setBounds(34, 98, 138, 20);
+		add(lblNombre);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 165, 738, 220);
 		add(scrollPane);
 		
@@ -58,25 +68,91 @@ public class BorrarAsignatura extends JPanel {
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		scrollPane.setViewportView(table);
 		
+		Vector nombresTabla = new Vector();
 				
-				Vector nombresTabla = new Vector();
+		nombresTabla.add("Id");
+		nombresTabla.add("Nombre");
+		nombresTabla.add("Curso");
+		nombresTabla.add("Horas Semanales");
+		nombresTabla.add("Horas Anuales");
 				
-				nombresTabla.add("Id");
-				nombresTabla.add("Nombre");
-				nombresTabla.add("Curso");
+		table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
 				
-				table.setModel(new DefaultTableModel(nombresTabla, arrAlumnos.size()));
+		btnBuscar = new JButton("BUSCAR");
+		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnBuscar.setBackground(Color.WHITE);
+		btnBuscar.setBounds(445, 86, 116, 35);
+		add(btnBuscar);
 				
-				JButton btnBuscar = new JButton("Buscar");
-				btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-				btnBuscar.setBackground(Color.WHITE);
-				btnBuscar.setBounds(445, 86, 116, 35);
-				add(btnBuscar);
+		btnLimpiar = new JButton("LIMPIAR");
+		btnLimpiar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnLimpiar.setBackground(Color.WHITE);
+		btnLimpiar.setBounds(622, 86, 116, 35);
+		add(btnLimpiar);
+		
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnEliminar.setBackground(Color.WHITE);
+		btnEliminar.setBounds(445, 120, 123, 35);
+		add(btnEliminar);
+		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String filtroConsultaAsignatura;
+				filtroConsultaAsignatura = txtNombre.getText();
 				
-				JButton btnBorrar = new JButton("Borrar");
-				btnBorrar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-				btnBorrar.setBackground(Color.WHITE);
-				btnBorrar.setBounds(622, 86, 116, 35);
-				add(btnBorrar);
+				arrAsignaturas = bd.cargaAsignatura(filtroConsultaAsignatura);
+				table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+					
+				for (int i=0;i<arrAsignaturas.size();i++) {
+					table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
+					table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 1);
+					table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 2);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 3);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 4);
+				}
+			}
+		});
+		
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos de la tabla y el texto intoducido?", "¡CUIDADO!", JOptionPane.YES_NO_OPTION);
+				
+				if(JOptionPane.OK_OPTION == valor) {
+					txtNombre.setText("");
+					table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+				}
+			}
+		});
+
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (e.getClickCount() == 1) {
+					int indice = table.rowAtPoint(e.getPoint());
+					int idBorrarAsignatura = 0;
+					for(Asignatura asig: arrAsignaturas) {
+						if(asig.getNombreAsignatura().equals(table.getValueAt(indice, 1))) {
+							idBorrarAsignatura = asig.getIdAsignatura();
+							bd.borradorAsignatura(idBorrarAsignatura);
+						}
+					}
+					
+					String filtroConsultaAsignatura;
+					filtroConsultaAsignatura = txtNombre.getText();
+					
+					arrAsignaturas = bd.cargaAsignatura(filtroConsultaAsignatura);
+					table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+						
+					for (int i=0;i<arrAsignaturas.size();i++) {
+						table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
+						table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 1);
+						table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 2);
+						table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 3);
+						table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 4);
+					}
+				}
+			}
+		});
 	}
 }
