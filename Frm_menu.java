@@ -47,17 +47,17 @@ public class Frm_menu extends JFrame {
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtCorreo.getText().equals("administrador") && txtContrasena.getText().equals("administrador")) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesi�n como root (Administrador)", "ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesion como root (Administrador)", "ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE);
                     OpcionAdmin ventana = new OpcionAdmin();
                     ventana.setVisible(true);
                     dispose();
                 }else if(txtCorreo.getText().equals("alumno") && txtContrasena.getText().equals("alumno")) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesi�n como (Alumno)", "ALUMNO", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesion como (Alumno)", "ALUMNO", JOptionPane.INFORMATION_MESSAGE);
                     OpcionVisitante ventana = new OpcionVisitante();
                     ventana.setVisible(true);
                     dispose();
                 }else {
-                	JOptionPane.showMessageDialog(null, "El usuario o la contrase�a son incorrectos :(", "ERROR 404", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "El usuario o la contrasena son incorrectos :(", "ERROR 404", JOptionPane.INFORMATION_MESSAGE);
                 }
 			}
 		});
