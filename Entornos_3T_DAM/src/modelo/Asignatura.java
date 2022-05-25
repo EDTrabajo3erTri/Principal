@@ -3,19 +3,19 @@ package modelo;
 public class Asignatura {
 	private int idAsignatura;
 	private String nombreAsignatura;
-	private int nombreCurso;
+	private String nombreCurso;
 	private int horasAsignaturaSemanal;
 	private int horasAsignaturaAnual;
 	
 	public Asignatura() {
 		idAsignatura = 0;
 		nombreAsignatura = "";
-		nombreCurso = 0;
+		nombreCurso = "";
 		horasAsignaturaSemanal = 0;
 		horasAsignaturaAnual = 0;
 	}
 
-	public Asignatura(int idAsignatura, String nombreAsignatura, int nombreCurso, int horasAsignaturaSemanal, int horasAsignaturaAnual) {
+	public Asignatura(int idAsignatura, String nombreAsignatura, String nombreCurso, int horasAsignaturaSemanal, int horasAsignaturaAnual) {
 		this.idAsignatura = idAsignatura;
 		this.nombreAsignatura = nombreAsignatura;
 		this.nombreCurso = nombreCurso;
@@ -39,11 +39,11 @@ public class Asignatura {
 		this.nombreAsignatura = nombreAsignatura;
 	}
 
-	public int getNombreCurso() {
+	public String getNombreCurso() {
 		return nombreCurso;
 	}
 
-	public void setNombreCurso(int nombreCurso) {
+	public void setNombreCurso(String nombreCurso) {
 		this.nombreCurso = nombreCurso;
 	}
 

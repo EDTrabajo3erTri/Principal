@@ -3,32 +3,44 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
+import controlador.ConexionBD;
 import modelo.Alumno;
+import modelo.Asignatura;
+import modelo.Profesor;
 
 import java.awt.Color;
 import javax.swing.JButton;
 
 public class ModificarAsignatura extends JPanel {
-	private JTextField textField;
+	private JTextField txtNombre, txtNombre_2, txtCurso,txtHorasSemanales, txtHorasAnuales;
+	private JScrollPane scrollPane;
 	private JTable table;
-	ArrayList<Alumno> arrAlumnos = new ArrayList();
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	
+	private JTextPane txtModificarAsignatura;
+	private JLabel lblNombre, lblNombre_2, lblCurso, lblHorasSemanales, lblHorasAnuales;
+	private JButton btnBuscar, btnModificar;
+
+
+	ConexionBD bd = new ConexionBD();
+	ArrayList<Asignatura> arrAsignaturas = new ArrayList();
+
 	/**
 	 * Create the panel.
 	 */
@@ -36,93 +48,174 @@ public class ModificarAsignatura extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		setBounds(100, 100, 800, 500);
-		
-		JTextPane txtpnBorrarAlumno = new JTextPane();
-		txtpnBorrarAlumno.setText("Modificar Asignatura");
-		txtpnBorrarAlumno.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
-		txtpnBorrarAlumno.setEditable(false);
-		txtpnBorrarAlumno.setBounds(115, 11, 301, 54);
-		add(txtpnBorrarAlumno);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(182, 101, 192, 20);
-		add(textField);
-		
-		JLabel lblNewLabel_2_2 = new JLabel("Nombre:");
-		lblNewLabel_2_2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNewLabel_2_2.setBounds(34, 98, 138, 20);
-		add(lblNewLabel_2_2);
-		
-		JScrollPane scrollPane = new JScrollPane();
+
+		txtModificarAsignatura = new JTextPane();
+		txtModificarAsignatura.setText("Modificar Asignatura");
+		txtModificarAsignatura.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
+		txtModificarAsignatura.setEditable(false);
+		txtModificarAsignatura.setBounds(115, 11, 301, 54);
+		add(txtModificarAsignatura);
+
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(182, 101, 192, 20);
+		add(txtNombre);
+
+		lblNombre = new JLabel("Nombre:");
+		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblNombre.setBounds(34, 98, 138, 20);
+		add(lblNombre);
+
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 165, 738, 111);
 		add(scrollPane);
-		
+
 		table = new JTable();
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		scrollPane.setViewportView(table);
-		
+
+		Vector nombresTabla = new Vector();
+
+		//nombresTabla.add("Id");
+		nombresTabla.add("Nombre");
+		nombresTabla.add("Curso");
+		nombresTabla.add("Horas Semanales");
+		nombresTabla.add("Horas Anuales");
+
+		table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnBuscar.setBackground(Color.WHITE);
+		btnBuscar.setBounds(445, 86, 116, 35);
+		add(btnBuscar);
+
+		btnModificar = new JButton("Modificar");
+		btnModificar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnModificar.setBackground(Color.WHITE);
+		btnModificar.setBounds(605, 86, 120, 35);
+		add(btnModificar);
+
+		lblNombre_2 = new JLabel("Nombre:");
+		lblNombre_2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblNombre_2.setBounds(34, 316, 68, 20);
+		add(lblNombre_2);
+
+		lblCurso = new JLabel("Curso:");
+		lblCurso.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblCurso.setBounds(34, 358, 50, 20);
+		add(lblCurso);
+
+		txtNombre_2 = new JTextField();
+		txtNombre_2.setColumns(10);
+		txtNombre_2.setBounds(139, 316, 192, 20);
+		add(txtNombre_2);
+
+		txtCurso = new JTextField();
+		txtCurso.setColumns(10);
+		txtCurso.setBounds(139, 358, 192, 20);
+		add(txtCurso);
+
+		lblHorasSemanales = new JLabel("Horas Semanales:");
+		lblHorasSemanales.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblHorasSemanales.setBounds(385, 316, 138, 20);
+		add(lblHorasSemanales);
+
+		txtHorasSemanales = new JTextField();
+		txtHorasSemanales.setColumns(10);
+		txtHorasSemanales.setBounds(533, 321, 192, 20);
+		add(txtHorasSemanales);
+
+		lblHorasAnuales = new JLabel("Horas Anuales:");
+		lblHorasAnuales.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+		lblHorasAnuales.setBounds(385, 360, 138, 20);
+		add(lblHorasAnuales);
+
+		txtHorasAnuales = new JTextField();
+		txtHorasAnuales.setColumns(10);
+		txtHorasAnuales.setBounds(533, 363, 192, 20);
+		add(txtHorasAnuales);
+
+		btnBuscar.addActionListener(new ActionListener() {
+			/**
+			 * Con el método de buscar, hacemos que el usuario a la hora de pulsarlo se
+			 * proceda ha realizar la búsqueda.
+			 */
+			public void actionPerformed(ActionEvent ex) {
+				String filtroConsultaAsignatura;
+				filtroConsultaAsignatura = txtNombre.getText();
 				
-				Vector nombresTabla = new Vector();
-				
-				nombresTabla.add("Id");
-				nombresTabla.add("Nombre");
-				nombresTabla.add("Curso");
-				nombresTabla.add("Horas Semanales");
-				nombresTabla.add("Horas Anuales");
-				
-				table.setModel(new DefaultTableModel(nombresTabla, arrAlumnos.size()));
-				
-				JButton btnBuscar = new JButton("Buscar");
-				btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-				btnBuscar.setBackground(Color.WHITE);
-				btnBuscar.setBounds(445, 86, 116, 35);
-				add(btnBuscar);
-				
-				JButton btnGuardar = new JButton("Guardar");
-				btnGuardar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-				btnGuardar.setBackground(Color.WHITE);
-				btnGuardar.setBounds(605, 86, 116, 35);
-				add(btnGuardar);
-				
-				JLabel lblNewLabel_2_2_1 = new JLabel("Nombre:");
-				lblNewLabel_2_2_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-				lblNewLabel_2_2_1.setBounds(34, 316, 68, 20);
-				add(lblNewLabel_2_2_1);
-				
-				JLabel lblNewLabel_2_2_1_1 = new JLabel("Curso:");
-				lblNewLabel_2_2_1_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-				lblNewLabel_2_2_1_1.setBounds(34, 358, 50, 20);
-				add(lblNewLabel_2_2_1_1);
-				
-				textField_1 = new JTextField();
-				textField_1.setColumns(10);
-				textField_1.setBounds(139, 316, 192, 20);
-				add(textField_1);
-				
-				textField_2 = new JTextField();
-				textField_2.setColumns(10);
-				textField_2.setBounds(139, 358, 192, 20);
-				add(textField_2);
-				
-				JLabel lblNewLabel_2_1_1 = new JLabel("Horas Semanales:");
-				lblNewLabel_2_1_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-				lblNewLabel_2_1_1.setBounds(385, 316, 138, 20);
-				add(lblNewLabel_2_1_1);
-				
-				textField_3 = new JTextField();
-				textField_3.setColumns(10);
-				textField_3.setBounds(533, 321, 192, 20);
-				add(textField_3);
-				
-				JLabel lblNewLabel_2_1_1_1 = new JLabel("Horas Anuales:");
-				lblNewLabel_2_1_1_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-				lblNewLabel_2_1_1_1.setBounds(385, 360, 138, 20);
-				add(lblNewLabel_2_1_1_1);
-				
-				textField_4 = new JTextField();
-				textField_4.setColumns(10);
-				textField_4.setBounds(533, 363, 192, 20);
-				add(textField_4);
+				arrAsignaturas = bd.cargaAsignatura(filtroConsultaAsignatura);
+				table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+					
+				for (int i=0;i<arrAsignaturas.size();i++) {
+					//table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
+					table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 0);
+					table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 1);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 2);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 3);
+				}
+			}
+		});
+
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				int filaseleccionada = table.rowAtPoint(e.getPoint());
+
+				// txtIdAlumno.setText(table.getValueAt(filaseleccionada, 0).toString());
+				txtNombre_2.setText(table.getValueAt(filaseleccionada, 0).toString());
+				txtCurso.setText(table.getValueAt(filaseleccionada, 1).toString());
+				txtHorasSemanales.setText(table.getValueAt(filaseleccionada, 2).toString());
+				txtHorasAnuales.setText(table.getValueAt(filaseleccionada, 3).toString());
+
+				TableColumnModel columnaModelo = table.getColumnModel();
+				table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				table.getColumnModel().getColumn(1).setPreferredWidth(75);
+				table.getColumnModel().getColumn(2).setPreferredWidth(75);
+				table.getColumnModel().getColumn(3).setPreferredWidth(75);
+
+			}
+		});
+
+		btnModificar.addActionListener(new ActionListener() {
+			/**
+			 * Con el botón de modificar, a la hora que el usuario lo pulse, le saltará una
+			 * alerta de advertencia, si está seguro de modificar los siguientes datos que
+			 * se cambiaran los nuevos filtros.
+			 */
+			public void actionPerformed(ActionEvent e) {
+				int punto = JOptionPane.showConfirmDialog(null, "¿Los datos se van a modificar quieres continuar?",
+						"¡CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
+
+				if (JOptionPane.OK_OPTION == punto) {
+					Asignatura asig = new Asignatura();
+					/*
+					 * int idAlumno = 0;
+					 * 
+					 * for (Alumno a: arrAlumnos) {
+					 * if(a.getNombreAlumno().equals(table.getValueAt(table.getSelectedRow(),
+					 * 1).toString())) { idAlumno = a.getIdAlumno(); } }
+					 * 
+					 * alum.setIdAlumno(idAlumno);
+					 */
+					asig.setNombreAsignatura(txtNombre_2.getText());
+					asig.setNombreCurso(txtCurso.getText());
+					asig.setHorasAsignaturaSemanal(Integer.parseInt(txtHorasSemanales.getText().toString()));
+					asig.setHorasAsignaturaAnual(Integer.parseInt(txtHorasAnuales.getText().toString()));
+
+					bd.modificarAsignatura(asig);
+					// renovarTabla();
+
+					JOptionPane.showInternalMessageDialog(null,
+							"La asignatura seleccionada, se ha modificado correctamente");
+				} else if (JOptionPane.NO_OPTION == punto) {
+					JOptionPane.showInternalMessageDialog(null,
+							"La asignatura seleccionada, no ha llegado a modificarse");
+				}
+
+			}
+		});
 	}
 }

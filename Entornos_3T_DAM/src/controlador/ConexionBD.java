@@ -17,12 +17,12 @@ public class ConexionBD {
 	public ArrayList<Alumno> cargaAlumno(String filtro) {
 			
 		ArrayList<Alumno> arrAlumnos = new ArrayList<>();
-		Alumno datos = null;
+		Alumno datos;
 			
 		try {
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio", "bd_colegio");
 			Statement consulta = conexion.createStatement();
-			ResultSet registro = consulta.executeQuery("select *from alumnos where nombre= '" + filtro + "';");
+			ResultSet registro = consulta.executeQuery("select *from alumnos where nombreAlumno = '" + filtro + "';");
 	
 			System.out.println("Conexión establecida");
 				
@@ -46,15 +46,15 @@ public class ConexionBD {
 		return arrAlumnos;
 	}
 	
-	public ArrayList<Asignatura> cargaAsignatura() {
+	public ArrayList<Asignatura> cargaAsignatura(String filtro) {
 		
 		ArrayList<Asignatura> arrAsignaturas = new ArrayList<>();
-		Asignatura datos = null;
+		Asignatura datos;
 			
 		try {
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio", "bd_colegio");
 			Statement consulta = conexion.createStatement();
-			ResultSet registro = consulta.executeQuery("select *from asignaturas;");
+			ResultSet registro = consulta.executeQuery("select *from asignaturas where nombreAsignatura = '" + filtro + "';");
 	
 			System.out.println("Conexión establecida");
 				
@@ -62,7 +62,7 @@ public class ConexionBD {
 				datos = new Asignatura();
 				datos.setIdAsignatura(registro.getInt("idAsignatura"));
 				datos.setNombreAsignatura(registro.getString("nombreAsignatura"));
-				datos.setNombreCurso(registro.getInt("nombreCurso"));
+				datos.setNombreCurso(registro.getString("curso"));
 				datos.setHorasAsignaturaSemanal(registro.getInt("horasAsignaturaSemanal"));
 				datos.setHorasAsignaturaAnual(registro.getInt("horasAsignaturaAnual"));
 				arrAsignaturas.add(datos);
@@ -75,15 +75,15 @@ public class ConexionBD {
 		return arrAsignaturas;
 	}
 	
-	public ArrayList<Profesor> cargaProfesor() {
+	public ArrayList<Profesor> cargaProfesor(String filtro) {
 		
 		ArrayList<Profesor> arrProfesores = new ArrayList<>();
-		Profesor datos = null;
+		Profesor datos;
 			
 		try {
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio", "bd_colegio");
 			Statement consulta = conexion.createStatement();
-			ResultSet registro = consulta.executeQuery("select *from asignaturas;");
+			ResultSet registro = consulta.executeQuery("select *from profesores where nombreProfesor = '" + filtro + "';");
 	
 			System.out.println("Conexión establecida");
 				
@@ -133,13 +133,13 @@ public class ConexionBD {
 	public void agregarAsignatura(Asignatura filtro) {
 
 		try {
-			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "madridautos","madridautos");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio","bd_colegio");
 			Statement consulta = conexion.createStatement();
 
-			consulta.executeUpdate("INSERT INTO asignaturas (idAsignatura, nombreAsignatura, nombreCurso, horasAsignaturaSemanal, horasAsignaturaAnual, direccionAlumno, telefonoAlumno, fechaNacimiento) values ("
+			consulta.executeUpdate("INSERT INTO asignaturas (idAsignatura, nombreAsignatura, curso, horasAsignaturaSemanal, horasAsignaturaAnual) values ("
 					+ filtro.getIdAsignatura() + ", '" 
-					+ filtro.getNombreAsignatura() + "', " 
-					+ filtro.getNombreCurso() + ", "
+					+ filtro.getNombreAsignatura() + "', '" 
+					+ filtro.getNombreCurso() + "', "
 					+ filtro.getHorasAsignaturaSemanal() + ", " 
 					+ filtro.getHorasAsignaturaAnual() + ");");
 
@@ -148,6 +148,189 @@ public class ConexionBD {
 			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
+		}
+	}
+	
+	public void agregarProfesor(Profesor filtro) {
+
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio","bd_colegio");
+			Statement consulta = conexion.createStatement();
+
+			consulta.executeUpdate("INSERT INTO profesores (idProfesor, dniProfesor, nombreProfesor, apellido1Profesor, apellido2Profesor, telefonoProfesor, estudiosProfesor) values ("
+					+ filtro.getIdProfesor() + ", '" 
+					+ filtro.getDniProfesor() + "', '" 
+					+ filtro.getNombreProfesor() + "', '" 
+					+ filtro.getApellido1Profesor() + "', '"
+					+ filtro.getApellido2Profesor() + "', '" 
+					+ filtro.getTelefonoProfesor() + "', '" 
+					+ filtro.getEstudiosProfesor() + "');");
+
+			conexion.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+			e.printStackTrace();
+		}
+	}
+
+	public void borradorAlumno(int puntoBorrar) {
+
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio",
+					"bd_colegio");
+			Statement consulta = conexion.createStatement();
+
+			int punto = JOptionPane.showConfirmDialog(null,
+					"Tenga cuidado, se eliminará el valor seleccionado: " + puntoBorrar, "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			if (JOptionPane.OK_OPTION == punto) {
+				consulta.executeUpdate("delete from alumnos where idAlumno = " + puntoBorrar + ";");
+				JOptionPane.showInternalMessageDialog(null, "El alumno seleccionado se ha borrado correctamente");
+			} else if (JOptionPane.NO_OPTION == punto) {
+				JOptionPane.showInternalMessageDialog(null, "Ningún alumno se ha llegado a borrar");
+			}
+			conexion.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+			e.printStackTrace();
+		}
+	}
+
+	public void borradorAsignatura(int puntoBorrar) {
+
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio",
+					"bd_colegio");
+			Statement consulta = conexion.createStatement();
+
+			int punto = JOptionPane.showConfirmDialog(null,
+					"Tenga cuidado, se eliminará el valor seleccionado: " + puntoBorrar, "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			if (JOptionPane.OK_OPTION == punto) {
+				consulta.executeUpdate("delete from asignaturas where idAsignatura = " + puntoBorrar + ";");
+				JOptionPane.showInternalMessageDialog(null, "La asignatura seleccionada se ha borrado correctamente");
+			} else if (JOptionPane.NO_OPTION == punto) {
+				JOptionPane.showInternalMessageDialog(null, "Ninguna asignatura se ha llegado a borrar");
+			}
+			conexion.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+			e.printStackTrace();
+		}
+	}
+
+	public void borradorProfesor(int puntoBorrar) {
+
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio",
+					"bd_colegio");
+			Statement consulta = conexion.createStatement();
+
+			int punto = JOptionPane.showConfirmDialog(null,
+					"Tenga cuidado, se eliminará el valor seleccionado: " + puntoBorrar, "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			if (JOptionPane.OK_OPTION == punto) {
+				consulta.executeUpdate("delete from profesores where idProfesor = " + puntoBorrar + ";");
+				JOptionPane.showInternalMessageDialog(null, "El profesor seleccionado se ha borrado correctamente");
+			} else if (JOptionPane.NO_OPTION == punto) {
+				JOptionPane.showInternalMessageDialog(null, "Ningún profesor se ha llegado a borrar");
+			}
+			conexion.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+			e.printStackTrace();
+		}
+	}
+	
+	public void modificarAlumno(Alumno filtroModificar) {
+
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio",
+					"bd_colegio");
+			Statement consulta = conexion.createStatement();
+
+			consulta.executeUpdate("UPDATE alumnos SET "
+					+ " dniAlumno = '" + filtroModificar.getDniAlumno() + "', " 
+					+ " nombreAlumno = '" + filtroModificar.getNombreAlumno() + "', "
+					+ " apellido1Alumno = '" + filtroModificar.getApellido1Alumno() + "', " 
+					+ " apellido2Alumno = '" + filtroModificar.getApellido2Alumno() + "', "
+					+ " direccionAlumno = '" + filtroModificar.getDireccionAlumno() + "', "
+					+ " telefonoAlumno = " + filtroModificar.getTelefonoAlumno() + ", " 
+					+ " fechaNacimiento = '" + filtroModificar.getFechaNacimiento() + "' WHERE idAlumno = " + filtroModificar.getIdAlumno() + ";");
+			
+			System.out.println("UPDATE alumnos SET "
+					+ " dniAlumno = '" + filtroModificar.getDniAlumno() + "', " 
+					+ " nombreAlumno = '" + filtroModificar.getNombreAlumno() + "', "
+					+ " apellido1Alumno = '" + filtroModificar.getApellido1Alumno() + "', " 
+					+ " apellido2Alumno = '" + filtroModificar.getApellido2Alumno() + "', "
+					+ " direccionAlumno = '" + filtroModificar.getDireccionAlumno() + "', "
+					+ " telefonoAlumno = " + filtroModificar.getTelefonoAlumno() + ", " 
+					+ " fechaNacimiento = '" + filtroModificar.getFechaNacimiento() + "' WHERE idAlumno = " + filtroModificar.getIdAlumno() + ";");
+			conexion.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	public void modificarProfesor(Profesor filtroModificar) {
+
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio",
+					"bd_colegio");
+			Statement consulta = conexion.createStatement();
+
+			consulta.executeUpdate("UPDATE profesores SET "
+					+ " dniProfesor = '" + filtroModificar.getDniProfesor() + "', " 
+					+ " nombreProfesor = '" + filtroModificar.getNombreProfesor() + "', "
+					+ " apellido1Profesor = '" + filtroModificar.getApellido1Profesor() + "', " 
+					+ " apellido2Profesor = '" + filtroModificar.getApellido2Profesor() + "', "
+					+ " telefonoProfesor = '" + filtroModificar.getTelefonoProfesor() + "', " 
+					+ " estudiosProfesor = '" + filtroModificar.getEstudiosProfesor() + "' WHERE idProfesor = " + filtroModificar.getIdProfesor() + ";");
+			
+			System.out.println("UPDATE profesores SET "
+					+ " dniProfesor = '" + filtroModificar.getDniProfesor() + "', " 
+					+ " nombreProfesor = '" + filtroModificar.getNombreProfesor() + "', "
+					+ " apellido1Profesor = '" + filtroModificar.getApellido1Profesor() + "', " 
+					+ " apellido2Profesor = '" + filtroModificar.getApellido2Profesor() + "', "
+					+ " telefonoProfesor = '" + filtroModificar.getTelefonoProfesor() + "', " 
+					+ " estudiosProfesor = '" + filtroModificar.getEstudiosProfesor() + "' WHERE idProfesor = " + filtroModificar.getIdProfesor() + ";");
+			conexion.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	public void modificarAsignatura(Asignatura filtroModificar) {
+
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_colegio", "bd_colegio",
+					"bd_colegio");
+			Statement consulta = conexion.createStatement();
+
+			consulta.executeUpdate("UPDATE asignaturas SET "
+					+ " nombreAsignatura = '" + filtroModificar.getNombreAsignatura() + "', "
+					+ " curso = '" + filtroModificar.getNombreCurso() + "', " 
+					+ " horasAsignaturaSemanal = " + filtroModificar.getHorasAsignaturaSemanal() + ", "
+					+ " horasAsignaturaAnual = " + filtroModificar.getHorasAsignaturaAnual() + " WHERE idAsignatura = " + filtroModificar.getIdAsignatura() + ";");
+			
+			System.out.println("UPDATE asignaturas SET "
+					+ " nombreAsignatura = '" + filtroModificar.getNombreAsignatura() + "', "
+					+ " curso = '" + filtroModificar.getNombreCurso() + "', " 
+					+ " horasAsignaturaSemanal = " + filtroModificar.getHorasAsignaturaSemanal() + ", "
+					+ " horasAsignaturaAnual = " + filtroModificar.getHorasAsignaturaAnual() + " WHERE idAsignatura = " + filtroModificar.getIdAsignatura() + ";");
+			conexion.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

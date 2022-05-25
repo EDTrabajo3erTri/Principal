@@ -26,9 +26,9 @@ public class Frm_menu extends JFrame {
 	private JPanel contentPane;
 	private JButton btnEnviar;
 	private JLabel lblLogo;
-	private JLabel lblContraseña;
+	private JLabel lblContrasena;
 	private JTextField txtCorreo;
-	private JPasswordField txtContraseña;
+	private JPasswordField txtContrasena;
 	private JLabel lblIconoPrincipal;
 
 	/**
@@ -46,18 +46,18 @@ public class Frm_menu extends JFrame {
 		btnEnviar = new JButton("ENVIAR");
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtCorreo.getText().equals("administrador") && txtContraseña.getText().equals("administrador")) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesión como root (Administrador)", "ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE);
+				if(txtCorreo.getText().equals("administrador") && txtContrasena.getText().equals("administrador")) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesion como root (Administrador)", "ADMINISTRADOR", JOptionPane.INFORMATION_MESSAGE);
                     OpcionAdmin ventana = new OpcionAdmin();
                     ventana.setVisible(true);
                     dispose();
-                }else if(txtCorreo.getText().equals("alumno") && txtContraseña.getText().equals("alumno")) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesión como (Alumno)", "ALUMNO", JOptionPane.INFORMATION_MESSAGE);
+                }else if(txtCorreo.getText().equals("alumno") && txtContrasena.getText().equals("alumno")) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesion como (Alumno)", "ALUMNO", JOptionPane.INFORMATION_MESSAGE);
                     OpcionVisitante ventana = new OpcionVisitante();
                     ventana.setVisible(true);
                     dispose();
                 }else {
-                	JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos :(", "ERROR 404", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "El usuario o la contrasena son incorrectos :(", "ERROR 404", JOptionPane.INFORMATION_MESSAGE);
                 }
 			}
 		});
@@ -70,24 +70,24 @@ public class Frm_menu extends JFrame {
 		lblLogo.setBounds(0, 0, 172, 68);
 		contentPane.add(lblLogo);
 		
-		JLabel lblInicioDeSesión = new JLabel("Inicio de Sesi\u00F3n:");
-		lblInicioDeSesión.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lblInicioDeSesión.setBounds(465, 195, 114, 14);
-		contentPane.add(lblInicioDeSesión);
+		JLabel lblInicioDeSesion = new JLabel("Inicio de Sesi\u00F3n:");
+		lblInicioDeSesion.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lblInicioDeSesion.setBounds(465, 195, 114, 14);
+		contentPane.add(lblInicioDeSesion);
 		
-		lblContraseña = new JLabel("Contrase\u00F1a:");
-		lblContraseña.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lblContraseña.setBounds(465, 220, 114, 14);
-		contentPane.add(lblContraseña);
+		lblContrasena = new JLabel("Contrase\u00F1a:");
+		lblContrasena.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lblContrasena.setBounds(465, 220, 114, 14);
+		contentPane.add(lblContrasena);
 		
 		txtCorreo = new JTextField();
 		txtCorreo.setBounds(589, 195, 90, 14);
 		contentPane.add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
-		txtContraseña = new JPasswordField();
-		txtContraseña.setBounds(589, 220, 90, 14);
-		contentPane.add(txtContraseña);
+		txtContrasena = new JPasswordField();
+		txtContrasena.setBounds(589, 220, 90, 14);
+		contentPane.add(txtContrasena);
 		
 		lblIconoPrincipal = new JLabel("");
 		lblIconoPrincipal.setIcon(new ImageIcon("img/Logojuan.jpg"));
