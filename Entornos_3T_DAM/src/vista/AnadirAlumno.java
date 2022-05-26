@@ -129,15 +129,20 @@ public class AnadirAlumno extends JPanel {
 
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				alum.setNombreAlumno(txtNombre.getText());
-				alum.setApellido1Alumno(txtApellido1.getText());
-				alum.setApellido2Alumno(txtApellido2.getText());
-				alum.setDniAlumno(txtDNI.getText());
-				alum.setDireccionAlumno(txtDireccion.getText());
-				alum.setFechaNacimiento(Integer.parseInt(txtFechaNacimiento.getText().toString()));
-				alum.setTelefonoAlumno(txtTelefono.getText());
-				bd.agregarAlumno(alum);
-				JOptionPane.showMessageDialog(null, "EL ALUMNO HA SIDO AGREGADO CORRECTAMENTE", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
+				try {
+
+					alum.setNombreAlumno(txtNombre.getText());
+					alum.setApellido1Alumno(txtApellido1.getText());
+					alum.setApellido2Alumno(txtApellido2.getText());
+					alum.setDniAlumno(txtDNI.getText());
+					alum.setDireccionAlumno(txtDireccion.getText());
+					alum.setFechaNacimiento(Integer.parseInt(txtFechaNacimiento.getText().toString()));
+					alum.setTelefonoAlumno(txtTelefono.getText());
+					bd.agregarAlumno(alum);
+					JOptionPane.showMessageDialog(null, "EL ALUMNO HA SIDO AGREGADO CORRECTAMENTE", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
+				} catch (NumberFormatException e2) {
+					JOptionPane.showMessageDialog(null, "Debe de poner la fecha con espacios(Ejemplo: 1997 24 03)", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);// TODO: handle exception
+				}
 			}
 		});
 		

@@ -206,7 +206,7 @@ public class ModificarAsignatura extends JPanel {
 					asig.setHorasAsignaturaAnual(Integer.parseInt(txtHorasAnuales.getText().toString()));
 
 					bd.modificarAsignatura(asig);
-					// renovarTabla();
+					actualizarTabla();
 
 					JOptionPane.showInternalMessageDialog(null,
 							"La asignatura seleccionada, se ha modificado correctamente");
@@ -215,6 +215,38 @@ public class ModificarAsignatura extends JPanel {
 							"La asignatura seleccionada, no ha llegado a modificarse");
 				}
 
+			}
+
+			private void actualizarTabla() {
+
+				Vector nombresTabla = new Vector();
+
+				//nombresTabla.add("Id");
+				nombresTabla.add("Nombre");
+				nombresTabla.add("Curso");
+				nombresTabla.add("Horas Semanales");
+				nombresTabla.add("Horas Anuales");
+
+				String filtroConsultaAsignatura;
+				filtroConsultaAsignatura = txtNombre.getText();
+
+				arrAsignaturas = bd.cargaAsignatura(filtroConsultaAsignatura);
+				table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+
+				TableColumnModel columnaModelo = table.getColumnModel();
+				// table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				table.getColumnModel().getColumn(1).setPreferredWidth(75);
+				table.getColumnModel().getColumn(2).setPreferredWidth(75);
+				table.getColumnModel().getColumn(3).setPreferredWidth(75);
+					
+				for (int i=0;i<arrAsignaturas.size();i++) {
+					//table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
+					table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 0);
+					table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 1);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 2);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 3);
+				}
 			}
 		});
 	}

@@ -119,8 +119,8 @@ public class ConexionBD {
 					+ filtro.getApellido1Alumno() + "', '" 
 					+ filtro.getApellido2Alumno() + "', '" 
 					+ filtro.getDireccionAlumno() + "', '" 
-					+ filtro.getTelefonoAlumno() + "', " 
-					+ filtro.getFechaNacimiento() + ");");
+					+ filtro.getTelefonoAlumno() + "', '" 
+					+ filtro.getFechaNacimiento() + "');");
 
 			conexion.close();
 		} catch (SQLException e) {

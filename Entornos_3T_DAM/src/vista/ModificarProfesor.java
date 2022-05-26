@@ -169,7 +169,7 @@ public class ModificarProfesor extends JPanel {
 				table.setModel(new DefaultTableModel(nombresTabla, arrProfesores.size()));
 
 				for (int i = 0; i < arrProfesores.size(); i++) {
-					//table.setValueAt(arrProfesores.get(i).getIdProfesor(), i, 0);
+					// table.setValueAt(arrProfesores.get(i).getIdProfesor(), i, 0);
 					table.setValueAt(arrProfesores.get(i).getNombreProfesor(), i, 0);
 					table.setValueAt(arrProfesores.get(i).getApellido1Profesor(), i, 1);
 					table.setValueAt(arrProfesores.get(i).getApellido2Profesor(), i, 2);
@@ -233,7 +233,7 @@ public class ModificarProfesor extends JPanel {
 					prof.setTelefonoProfesor(txtTelefono.getText());
 
 					bd.modificarProfesor(prof);
-					// renovarTabla();
+					actualizarTabla();
 
 					JOptionPane.showInternalMessageDialog(null,
 							"El profesor seleccionado, se ha modificado correctamente");
@@ -242,6 +242,41 @@ public class ModificarProfesor extends JPanel {
 							"El profesor seleccionado, no ha llegado a modificarse");
 				}
 
+			}
+
+			private void actualizarTabla() {
+
+				Vector nombresTabla = new Vector();
+				
+				//nombresTabla.add("Id");
+				nombresTabla.add("Nombre");
+				nombresTabla.add("Primer Apellido");
+				nombresTabla.add("Segundo Apellido");
+				nombresTabla.add("Telefono");
+				nombresTabla.add("Estudios");
+
+				String filtroConsultaProfesor;
+				filtroConsultaProfesor = txtNombre.getText();
+
+				arrProfesores = bd.cargaProfesor(filtroConsultaProfesor);
+				table.setModel(new DefaultTableModel(nombresTabla, arrProfesores.size()));
+
+				TableColumnModel columnaModelo = table.getColumnModel();
+				// table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				table.getColumnModel().getColumn(1).setPreferredWidth(75);
+				table.getColumnModel().getColumn(2).setPreferredWidth(75);
+				table.getColumnModel().getColumn(3).setPreferredWidth(75);
+				table.getColumnModel().getColumn(3).setPreferredWidth(75);
+
+				for (int i = 0; i < arrProfesores.size(); i++) {
+					table.setValueAt(arrProfesores.get(i).getIdProfesor(), i, 0);
+					table.setValueAt(arrProfesores.get(i).getNombreProfesor(), i, 1);
+					table.setValueAt(arrProfesores.get(i).getApellido1Profesor(), i, 2);
+					table.setValueAt(arrProfesores.get(i).getApellido2Profesor(), i, 3);
+					table.setValueAt(arrProfesores.get(i).getTelefonoProfesor(), i, 4);
+					table.setValueAt(arrProfesores.get(i).getEstudiosProfesor(), i, 5);
+				}
 			}
 		});
 	}
