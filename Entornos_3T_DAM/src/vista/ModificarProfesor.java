@@ -28,6 +28,12 @@ import modelo.Profesor;
 import java.awt.Color;
 import javax.swing.JButton;
 
+/**
+ * Clase ModificarProfesor del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class ModificarProfesor extends JPanel {
 	private JTextPane txtModificarProfesor;
 	private JTextField txtNombre, txtNombre_2, txtPrimerApellido, txtSegundoApellido, txtDNI, txtEstudios, txtTelefono;
@@ -40,7 +46,7 @@ public class ModificarProfesor extends JPanel {
 	ArrayList<Profesor> arrProfesores = new ArrayList();
 
 	/**
-	 * Create the panel.
+	 * Creamos el panel.
 	 */
 	public ModificarProfesor() {
 		setBackground(Color.WHITE);

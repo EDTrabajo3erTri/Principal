@@ -24,6 +24,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Clase BorrarAlumno del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class BorrarAlumno extends JPanel {
 	private JTextPane txtBorrarAlumno;
 	private JLabel lblNombre;
@@ -36,7 +42,7 @@ public class BorrarAlumno extends JPanel {
 	ArrayList<Alumno> arrAlumnos = new ArrayList();
 	
 	/**
-	 * Create the panel.
+	 * Creamos el panel.
 	 */
 	public BorrarAlumno() {
 		setBackground(Color.WHITE);
@@ -99,6 +105,9 @@ public class BorrarAlumno extends JPanel {
 		add(btnEliminar);
 
 		btnBuscar.addActionListener(new ActionListener() {
+			/**
+			 * Con el evento del botón de Buscar, procedemos a consultar en la base de datos un 'Alumno'.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				String filtroConsultaAlumno;
 				filtroConsultaAlumno = txtNombre.getText();
@@ -119,6 +128,9 @@ public class BorrarAlumno extends JPanel {
 		});
 		
 		btnLimpiar.addActionListener(new ActionListener() {
+			/**
+			 * Con el botón de Limpiar, al pulsarlo el usuario, la aplicación automáticamente vaciará los campos y la tabla dejándolo en blanco.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos introducidos?", "¡CUIDADO!", JOptionPane.YES_NO_OPTION);
 				
@@ -130,6 +142,10 @@ public class BorrarAlumno extends JPanel {
 		});
 
 		btnEliminar.addMouseListener(new MouseAdapter() {
+			/**
+			 * Con el botón de Eliminar, al pulsarlo el usuario, la aplicación le preguntará al usuario si 
+			 * 'está seguro de eliminar la fila seleccionada'. Dependiendo de su respuesta, lo eliminará o no.
+			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (e.getClickCount() == 1) {

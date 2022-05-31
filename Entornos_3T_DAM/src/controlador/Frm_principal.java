@@ -7,6 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Clase Frm_principal de del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class Frm_principal extends JFrame {
 
 	private JPanel contentPane;

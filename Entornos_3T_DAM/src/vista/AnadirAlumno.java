@@ -20,19 +20,26 @@ import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
+/**
+ * Clase AñadirAlumno del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class AnadirAlumno extends JPanel {
 	private JTextPane txtAgregarAlumno;
 	private JTextField txtNombre, txtApellido1, txtApellido2, txtDNI, txtDireccion, txtFechaNacimiento, txtTelefono;
 	private JLabel lblNombre, lblApellido1, lblApellido2, lblDNI, lblDireccion, lblFechaNacimiento, lblTelefono, lblLogoJUANXXIII;
 	private JButton btnAgregar, btnLimpiar;
+	private final JDateChooser calendar = new JDateChooser();
 	
 	ConexionBD bd = new ConexionBD();
 	Alumno alum = new Alumno();
-	private final JCalendar calendar = new JCalendar();
 
 	/**
-	 * Create the panel.
+	 * Creamos el panel.
 	 */
 	public AnadirAlumno() {
 		setBackground(Color.WHITE);
@@ -110,7 +117,7 @@ public class AnadirAlumno extends JPanel {
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(183, 264, 192, 20);
+		txtDireccion.setBounds(183, 260, 192, 20);
 		add(txtDireccion);
 		
 		lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
@@ -132,38 +139,143 @@ public class AnadirAlumno extends JPanel {
 		txtTelefono.setColumns(10);
 		txtTelefono.setBounds(183, 326, 192, 20);
 		add(txtTelefono);
-		calendar.setBounds(183, 294, 192, 130);
+		calendar.setBounds(183, 294, 192, 20);
 		add(calendar);
 
 		btnAgregar.addActionListener(new ActionListener() {
+			/**
+			 * Con el evento del botón de Agregar, procedemos a insertar en base de datos un nuevo 'Alumno'.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Calendar today = Calendar.getInstance();
-					String dia;
-					String mes;
-					int ano;
-					String fechaCompleta = null;
-					Date fechaTemporal;
+					String temporal;
+					String numeroMes = null;
 					alum.setNombreAlumno(txtNombre.getText());
 					alum.setApellido1Alumno(txtApellido1.getText());
 					alum.setApellido2Alumno(txtApellido2.getText());
 					alum.setDniAlumno(txtDNI.getText());
 					alum.setDireccionAlumno(txtDireccion.getText());
-					fechaTemporal = calendar.getDate();
-					System.out.println(fechaTemporal);
+					alum.setFechaNacimiento(calendar.getJCalendar().getDate());
+					temporal = alum.getFechaNacimiento().toLocaleString();
 					alum.setTelefonoAlumno(txtTelefono.getText());
-					/*System.out.println(alum.getFechaNacimiento());*/
-					/*bd.agregarAlumno(alum);*/
-					JOptionPane.showMessageDialog(null, "EL ALUMNO HA SIDO AGREGADO CORRECTAMENTE", "ï¿½ATENCIï¿½N!", JOptionPane.INFORMATION_MESSAGE);
+					temporal = temporal.replaceFirst(".$","");
+					temporal =temporal.replaceFirst(".$","");
+					temporal =temporal.replaceFirst(".$","");
+					temporal =temporal.replaceFirst(".$","");
+					temporal =temporal.replaceFirst(".$","");
+					temporal =temporal.replaceFirst(".$","");
+					temporal =temporal.replaceFirst(".$","");
+					temporal =temporal.replaceFirst(".$","");
+					temporal =temporal.replaceFirst(".$","");
+					numeroMes = temporal;
+					numeroMes = numeroMes.replaceFirst(".$", "");
+					numeroMes = numeroMes.replaceFirst(".$", "");
+					numeroMes = numeroMes.replaceFirst(".$", "");
+					numeroMes = numeroMes.replaceFirst(".$", "");
+					numeroMes = numeroMes.replaceFirst(".$", "");
+					
+					char[] letra3 = numeroMes.toCharArray();
+			        char lastChar3 = letra3[letra3.length - 1];
+			        
+			        numeroMes = numeroMes.replaceFirst(".$", "");
+			      
+			        char[] letra2 = numeroMes.toCharArray();
+			        char lastChar2 = letra2[letra2.length - 1];
+			        
+			        numeroMes = numeroMes.replaceFirst(".$", "");
+			        
+			        char[] letra1 = numeroMes.toCharArray();
+			        char lastChar1 = letra1[letra1.length - 1];
+			        
+			        numeroMes = numeroMes.replaceFirst(".$", "");
+			        numeroMes = numeroMes.replaceFirst(".$", "");
+			        
+			        String Mes;
+			        
+			        StringBuilder sb = new StringBuilder();
+			        sb.append(lastChar1);
+			        sb.append(lastChar2);
+			        sb.append(lastChar3);
+			        Mes = sb.toString();
+			        
+			        String numMes = null;
+			        if(Mes.equals("ene")) {
+			        	numMes = "01";
+			        }else if(Mes.equals("feb")) {
+			        	numMes = "02";
+			        }else if(Mes.equals("mar")) {
+			        	numMes = "03";
+			        }else if(Mes.equals("abr")) {
+			        	numMes = "04";
+			        }else if(Mes.equals("may")) {
+			        	numMes = "05";
+			        }else if(Mes.equals("jun")) {
+			        	numMes = "06";
+			        }else if(Mes.equals("jul")) {
+			        	numMes = "07";
+			        }else if(Mes.equals("ago")) {
+			        	numMes = "08";
+			        }else if(Mes.equals("sep")) {
+			        	numMes = "09";
+			        }else if(Mes.equals("oct")) {
+			        	numMes = "10";
+			        }else if(Mes.equals("nov")) {
+			        	numMes = "11";
+			        }else if(Mes.equals("dic")) {
+			        	numMes = "12";
+			        }
+			        
+			        char[] numero4 = temporal.toCharArray();
+			        char lastNumero4 = numero4[numero4.length - 1];
+			        
+			        temporal = temporal.replaceFirst(".$", "");
+			        
+			        char[] numero3 = temporal.toCharArray();
+			        char lastNumero3 = numero3[numero3.length - 1];
+			        
+			        temporal = temporal.replaceFirst(".$", "");
+			        
+			        char[] numero2 = temporal.toCharArray();
+			        char lastNumero2 = numero2[numero2.length - 1];
+			        
+			        temporal = temporal.replaceFirst(".$", "");
+			        
+			        char[] numero1 = temporal.toCharArray();
+			        char lastNumero1 = numero1[numero1.length - 1];
+			        
+			        temporal = temporal.replaceFirst(".$", "");
+			        
+			        String Ano;
+			        
+			        StringBuilder ss = new StringBuilder();
+			        ss.append(lastNumero1);
+			        ss.append(lastNumero2);
+			        ss.append(lastNumero3);
+			        ss.append(lastNumero4);
+			        Ano = ss.toString();
+			        
+			        String FechanacimientoDefinitiva = Ano;
+			        
+			        FechanacimientoDefinitiva = FechanacimientoDefinitiva.concat("/");
+			        FechanacimientoDefinitiva = FechanacimientoDefinitiva.concat(numMes);
+			        FechanacimientoDefinitiva = FechanacimientoDefinitiva.concat("/");
+			        FechanacimientoDefinitiva = FechanacimientoDefinitiva.concat(numeroMes);
+			        
+					alum.setFechaNacimientoBuena(FechanacimientoDefinitiva);
+					bd.agregarAlumno(alum);
+					JOptionPane.showMessageDialog(null, "EL ALUMNO HA SIDO AGREGADO CORRECTAMENTE", " ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
 				} catch (NumberFormatException e2) {
-					JOptionPane.showMessageDialog(null, "Debe de poner la fecha con espacios(Ejemplo: 1997 24 03)", "ï¿½ATENCIï¿½N!", JOptionPane.INFORMATION_MESSAGE);// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "Debe de poner la fecha con espacios(Ejemplo: 1997 24 03)", " ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);// TODO: handle exception
 				}
 			}
 		});
 		
 		btnLimpiar.addActionListener(new ActionListener() {
+			/**
+			 * Con el botón de Limpiar, al pulsarlo el usuario, la aplicación automáticamente vaciará los campos y los dejara en blanco.
+			 */
 			public void actionPerformed(ActionEvent e) {
-				int valor = JOptionPane.showConfirmDialog(null, "ï¿½Estï¿½s seguro de que quieres limpiar los datos introducidos?", "ï¿½CUIDADO!", JOptionPane.YES_NO_OPTION);
+				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos introducidos?", "¿CUIDADO!", JOptionPane.YES_NO_OPTION);
 				
 				if(JOptionPane.OK_OPTION == valor) {
 					txtNombre.setText("");

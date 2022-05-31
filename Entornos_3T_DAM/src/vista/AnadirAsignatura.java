@@ -16,6 +16,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase AñadirAsignatura del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class AnadirAsignatura extends JPanel {
 	private JTextPane txtAgregarAsignatura;
 	private JTextField txtNombre, txtCurso, txtHorasSemanales, txtHorasAnuales;
@@ -26,7 +32,7 @@ public class AnadirAsignatura extends JPanel {
 	Asignatura asig = new Asignatura();
 
 	/**
-	 * Create the panel.
+	 * Creamos el panel.
 	 */
 	public AnadirAsignatura() {
 		setBackground(Color.WHITE);
@@ -98,6 +104,9 @@ public class AnadirAsignatura extends JPanel {
 		add(txtHorasAnuales);
 
 		btnAgregar.addActionListener(new ActionListener() {
+			/**
+			 * Con el evento del botón de Agregar, procedemos a insertar en base de datos una nueva 'Asignatura'.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				asig.setNombreAsignatura(txtNombre.getText());
 				asig.setNombreCurso(txtCurso.getText());
@@ -109,6 +118,9 @@ public class AnadirAsignatura extends JPanel {
 		});
 		
 		btnLimpiar.addActionListener(new ActionListener() {
+			/**
+			 * Con el botón de Limpiar, al pulsarlo el usuario, la aplicación automáticamente vaciará los campos y los dejará en blanco.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos introducidos?", "¡CUIDADO!", JOptionPane.YES_NO_OPTION);
 				

@@ -16,6 +16,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase AñadirProfesor del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class AnadirProfesor extends JPanel {
 	private JTextPane txtAgregarProfesor;
 	private JTextField txtNombre, txtApellido1, txtApellido2, txtDNI, txtEstudios, txtTelefono;
@@ -26,7 +32,7 @@ public class AnadirProfesor extends JPanel {
 	Profesor prof = new Profesor();
 
 	/**
-	 * Create the panel.
+	 * Creamos el panel.
 	 */
 	public AnadirProfesor() {
 		setBackground(Color.WHITE);
@@ -118,6 +124,9 @@ public class AnadirProfesor extends JPanel {
 		add(txtTelefono);
 
 		btnAgregar.addActionListener(new ActionListener() {
+			/**
+			 * Con el evento del botón de Agregar, procedemos a insertar en base de datos un nuevo 'Profesor'.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				prof.setNombreProfesor(txtNombre.getText());
 				prof.setApellido1Profesor(txtApellido1.getText());
@@ -131,6 +140,9 @@ public class AnadirProfesor extends JPanel {
 		});
 		
 		btnLimpiar.addActionListener(new ActionListener() {
+			/**
+			 * Con el botón de Limpiar, al pulsarlo el usuario, la aplicación automáticamente vaciará los campos y los dejará en blanco.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos introducidos?", "¡CUIDADO!", JOptionPane.YES_NO_OPTION);
 				

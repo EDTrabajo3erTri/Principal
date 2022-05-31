@@ -28,6 +28,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Clase ModificarAlumno del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class ModificarAlumno extends JPanel {
 	private JTextPane txtModificarAlumno;
 	private JTextField txtNombre, txtNombre_2, txtPrimerApellido, txtSegundoApellido, txtDNI, txtDireccion,
@@ -42,7 +48,7 @@ public class ModificarAlumno extends JPanel {
 	ArrayList<Alumno> arrAlumnos = new ArrayList();
 
 	/**
-	 * Create the panel.
+	 * Creamos el panel.
 	 */
 	public ModificarAlumno() {
 		setBackground(Color.WHITE);
@@ -172,8 +178,8 @@ public class ModificarAlumno extends JPanel {
 
 		btnBuscar.addActionListener(new ActionListener() {
 			/**
-			 * Con el mï¿½todo de buscar, hacemos que el usuario a la hora de pulsarlo se
-			 * proceda ha realizar la bï¿½squeda.
+			 * Con el método de buscar, hacemos que el usuario a la hora de pulsarlo se
+			 * proceda ha realizar la búsqueda.
 			 */
 			public void actionPerformed(ActionEvent ex) {
 
@@ -224,13 +230,13 @@ public class ModificarAlumno extends JPanel {
 
 		btnModificar.addActionListener(new ActionListener() {
 			/**
-			 * Con el botï¿½n de modificar, a la hora que el usuario lo pulse, le saltarï¿½ una
-			 * alerta de advertencia, si estï¿½ seguro de modificar los siguientes datos que
+			 * Con el botón de modificar, a la hora que el usuario lo pulse, le saltarï¿½ una
+			 * alerta de advertencia, si está seguro de modificar los siguientes datos que
 			 * se cambiaran los nuevos filtros.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				int punto = JOptionPane.showConfirmDialog(null, "ï¿½Los datos se van a modificar quieres continuar?",
-						"ï¿½CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
+				int punto = JOptionPane.showConfirmDialog(null, "¿Los datos se van a modificar quieres continuar?",
+						"¿CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
 
 				if (JOptionPane.OK_OPTION == punto) {
 					Alumno alum = new Alumno();
@@ -248,7 +254,7 @@ public class ModificarAlumno extends JPanel {
 					alum.setApellido2Alumno(txtSegundoApellido.getText());
 					alum.setDniAlumno(txtDNI.getText());
 					alum.setDireccionAlumno(txtDireccion.getText());
-					alum.setFechaNacimiento();
+					//alum.setFechaNacimiento();
 					alum.setTelefonoAlumno(txtTelefono.getText());
 
 					bd.modificarAlumno(alum);

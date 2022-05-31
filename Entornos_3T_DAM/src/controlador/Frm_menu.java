@@ -8,7 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import vista.OpcionAdmin;
-import vista.OpcionVisitante;
+import vista.OpcionAlumno;
+import vista.OpcionProfesor;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,15 +22,19 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
+/**
+ * Clase Frm_menu de del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class Frm_menu extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnEnviar;
-	private JLabel lblLogo;
-	private JLabel lblContrasena;
+	private JLabel lblLogo, lblContrasena, lblIconoPrincipal, lblInicioDeSesion;
 	private JTextField txtCorreo;
 	private JPasswordField txtContrasena;
-	private JLabel lblIconoPrincipal;
 
 	/**
 	 * Create the frame.
@@ -53,7 +58,12 @@ public class Frm_menu extends JFrame {
                     dispose();
                 }else if(txtCorreo.getText().equals("alumno") && txtContrasena.getText().equals("alumno")) {
                     JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesion como (Alumno)", "ALUMNO", JOptionPane.INFORMATION_MESSAGE);
-                    OpcionVisitante ventana = new OpcionVisitante();
+                    OpcionAlumno ventana = new OpcionAlumno();
+                    ventana.setVisible(true);
+                    dispose();
+                }else if(txtCorreo.getText().equals("profesor") && txtContrasena.getText().equals("profesor")) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido iniciaste sesion como (Profesor)", "PROFESOR", JOptionPane.INFORMATION_MESSAGE);
+                    OpcionProfesor ventana = new OpcionProfesor();
                     ventana.setVisible(true);
                     dispose();
                 }else {
@@ -70,7 +80,7 @@ public class Frm_menu extends JFrame {
 		lblLogo.setBounds(0, 0, 172, 68);
 		contentPane.add(lblLogo);
 		
-		JLabel lblInicioDeSesion = new JLabel("Inicio de Sesi\u00F3n:");
+		lblInicioDeSesion = new JLabel("Inicio de Sesi\u00F3n:");
 		lblInicioDeSesion.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
 		lblInicioDeSesion.setBounds(465, 195, 114, 14);
 		contentPane.add(lblInicioDeSesion);

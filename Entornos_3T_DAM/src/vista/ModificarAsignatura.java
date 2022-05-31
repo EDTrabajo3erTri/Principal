@@ -29,6 +29,12 @@ import modelo.Profesor;
 import java.awt.Color;
 import javax.swing.JButton;
 
+/**
+ * Clase ModificarAsignatura del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class ModificarAsignatura extends JPanel {
 	private JTextField txtNombre, txtNombre_2, txtCurso,txtHorasSemanales, txtHorasAnuales;
 	private JScrollPane scrollPane;
@@ -42,7 +48,7 @@ public class ModificarAsignatura extends JPanel {
 	ArrayList<Asignatura> arrAsignaturas = new ArrayList();
 
 	/**
-	 * Create the panel.
+	 * Creamos el panel.
 	 */
 	public ModificarAsignatura() {
 		setBackground(Color.WHITE);
