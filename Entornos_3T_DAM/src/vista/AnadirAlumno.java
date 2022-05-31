@@ -15,6 +15,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
+import com.toedter.calendar.JCalendar;
 
 public class AnadirAlumno extends JPanel {
 	private JTextPane txtAgregarAlumno;
@@ -24,6 +29,7 @@ public class AnadirAlumno extends JPanel {
 	
 	ConexionBD bd = new ConexionBD();
 	Alumno alum = new Alumno();
+	private final JCalendar calendar = new JCalendar();
 
 	/**
 	 * Create the panel.
@@ -114,7 +120,7 @@ public class AnadirAlumno extends JPanel {
 		
 		txtFechaNacimiento = new JTextField();
 		txtFechaNacimiento.setColumns(10);
-		txtFechaNacimiento.setBounds(183, 295, 192, 20);
+		txtFechaNacimiento.setBounds(197, 450, 192, 20);
 		add(txtFechaNacimiento);
 		
 		lblTelefono = new JLabel("Telefono:");
@@ -126,29 +132,38 @@ public class AnadirAlumno extends JPanel {
 		txtTelefono.setColumns(10);
 		txtTelefono.setBounds(183, 326, 192, 20);
 		add(txtTelefono);
+		calendar.setBounds(183, 294, 192, 130);
+		add(calendar);
 
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-
+					Calendar today = Calendar.getInstance();
+					String dia;
+					String mes;
+					int ano;
+					String fechaCompleta = null;
+					Date fechaTemporal;
 					alum.setNombreAlumno(txtNombre.getText());
 					alum.setApellido1Alumno(txtApellido1.getText());
 					alum.setApellido2Alumno(txtApellido2.getText());
 					alum.setDniAlumno(txtDNI.getText());
 					alum.setDireccionAlumno(txtDireccion.getText());
-					alum.setFechaNacimiento(Integer.parseInt(txtFechaNacimiento.getText().toString()));
+					fechaTemporal = calendar.getDate();
+					System.out.println(fechaTemporal);
 					alum.setTelefonoAlumno(txtTelefono.getText());
-					bd.agregarAlumno(alum);
-					JOptionPane.showMessageDialog(null, "EL ALUMNO HA SIDO AGREGADO CORRECTAMENTE", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);
+					/*System.out.println(alum.getFechaNacimiento());*/
+					/*bd.agregarAlumno(alum);*/
+					JOptionPane.showMessageDialog(null, "EL ALUMNO HA SIDO AGREGADO CORRECTAMENTE", "ï¿½ATENCIï¿½N!", JOptionPane.INFORMATION_MESSAGE);
 				} catch (NumberFormatException e2) {
-					JOptionPane.showMessageDialog(null, "Debe de poner la fecha con espacios(Ejemplo: 1997 24 03)", "¡ATENCIÓN!", JOptionPane.INFORMATION_MESSAGE);// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "Debe de poner la fecha con espacios(Ejemplo: 1997 24 03)", "ï¿½ATENCIï¿½N!", JOptionPane.INFORMATION_MESSAGE);// TODO: handle exception
 				}
 			}
 		});
 		
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos introducidos?", "¡CUIDADO!", JOptionPane.YES_NO_OPTION);
+				int valor = JOptionPane.showConfirmDialog(null, "ï¿½Estï¿½s seguro de que quieres limpiar los datos introducidos?", "ï¿½CUIDADO!", JOptionPane.YES_NO_OPTION);
 				
 				if(JOptionPane.OK_OPTION == valor) {
 					txtNombre.setText("");

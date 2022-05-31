@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Date;
+
 public class Alumno {
 	private int idAlumno;
 	private String dniAlumno;
@@ -8,7 +10,7 @@ public class Alumno {
 	private String apellido2Alumno;
 	private String direccionAlumno;
 	private String telefonoAlumno;
-	private int fechaNacimiento;
+	private String fechaNacimiento;
 	
 	public Alumno() {
 		idAlumno = 0;
@@ -18,10 +20,10 @@ public class Alumno {
 		apellido2Alumno = "";
 		direccionAlumno = "";
 		telefonoAlumno = "";
-		fechaNacimiento = 0;
+		fechaNacimiento = null;
 	}
 
-	public Alumno(int idAlumno, String dniAlumno, String nombreAlumno, String apellido1Alumno, String apellido2Alumno, String direccionAlumno, String telefonoAlumno, int fechaNacimiento) {
+	public Alumno(int idAlumno, String dniAlumno, String nombreAlumno, String apellido1Alumno, String apellido2Alumno, String direccionAlumno, String telefonoAlumno, String fechaNacimiento) {
 		this.idAlumno = idAlumno;
 		this.dniAlumno = dniAlumno;
 		this.nombreAlumno = nombreAlumno;
@@ -88,11 +90,11 @@ public class Alumno {
 		this.telefonoAlumno = telefonoAlumno;
 	}
 
-	public int getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(int fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 }

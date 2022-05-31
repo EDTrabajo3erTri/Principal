@@ -17,11 +17,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AnadirProfesor extends JPanel {
-	private JTextField txtNombre, txtApellido1, txtApellido2, txtDNI, txtEstudios, txtTelefono;
 	private JTextPane txtAgregarProfesor;
-	private JLabel lblNombre, lbApellido1, lblApellido2, lblDNI, lblEstudios, lblTelefono;
+	private JTextField txtNombre, txtApellido1, txtApellido2, txtDNI, txtEstudios, txtTelefono;
+	private JLabel lblNombre, lbApellido1, lblApellido2, lblDNI, lblEstudios, lblTelefono, lblLogoJUANXXIII;
 	private JButton btnAgregar, btnLimpiar;
-	private JLabel lblLogoJUANXXIII;
 	
 	ConexionBD bd = new ConexionBD();
 	Profesor prof = new Profesor();

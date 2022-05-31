@@ -24,7 +24,7 @@ public class ConexionBD {
 			Statement consulta = conexion.createStatement();
 			ResultSet registro = consulta.executeQuery("select *from alumnos where nombreAlumno = '" + filtro + "';");
 	
-			System.out.println("Conexión establecida");
+			System.out.println("Conexiï¿½n establecida");
 				
 			while(registro.next()){
 				datos = new Alumno();
@@ -35,12 +35,12 @@ public class ConexionBD {
 				datos.setApellido2Alumno(registro.getString("apellido2Alumno"));
 				datos.setDireccionAlumno(registro.getString("direccionAlumno"));
 				datos.setTelefonoAlumno(registro.getString("telefonoAlumno"));
-				datos.setFechaNacimiento(registro.getInt("fechaNacimiento"));
+				datos.setFechaNacimiento(registro.getDate("fechaNacimiento"));
 				arrAlumnos.add(datos);
 			}
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
 		return arrAlumnos;
@@ -56,7 +56,7 @@ public class ConexionBD {
 			Statement consulta = conexion.createStatement();
 			ResultSet registro = consulta.executeQuery("select *from asignaturas where nombreAsignatura = '" + filtro + "';");
 	
-			System.out.println("Conexión establecida");
+			System.out.println("Conexion establecida");
 				
 			while(registro.next()){
 				datos = new Asignatura();
@@ -69,7 +69,7 @@ public class ConexionBD {
 			}
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
 		return arrAsignaturas;
@@ -85,7 +85,7 @@ public class ConexionBD {
 			Statement consulta = conexion.createStatement();
 			ResultSet registro = consulta.executeQuery("select *from profesores where nombreProfesor = '" + filtro + "';");
 	
-			System.out.println("Conexión establecida");
+			System.out.println("Conexiï¿½n establecida");
 				
 			while(registro.next()){
 				datos = new Profesor();
@@ -100,7 +100,7 @@ public class ConexionBD {
 			}
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
 		return arrProfesores;
@@ -124,7 +124,7 @@ public class ConexionBD {
 
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
@@ -145,7 +145,7 @@ public class ConexionBD {
 
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
@@ -168,7 +168,7 @@ public class ConexionBD {
 
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
@@ -182,18 +182,18 @@ public class ConexionBD {
 			Statement consulta = conexion.createStatement();
 
 			int punto = JOptionPane.showConfirmDialog(null,
-					"Tenga cuidado, se eliminará el valor seleccionado: " + puntoBorrar, "¡CUIDADO!",
+					"Tenga cuidado, se eliminarï¿½ el valor seleccionado: " + puntoBorrar, "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 
 			if (JOptionPane.OK_OPTION == punto) {
 				consulta.executeUpdate("delete from alumnos where idAlumno = " + puntoBorrar + ";");
 				JOptionPane.showInternalMessageDialog(null, "El alumno seleccionado se ha borrado correctamente");
 			} else if (JOptionPane.NO_OPTION == punto) {
-				JOptionPane.showInternalMessageDialog(null, "Ningún alumno se ha llegado a borrar");
+				JOptionPane.showInternalMessageDialog(null, "Ningï¿½n alumno se ha llegado a borrar");
 			}
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
@@ -207,7 +207,7 @@ public class ConexionBD {
 			Statement consulta = conexion.createStatement();
 
 			int punto = JOptionPane.showConfirmDialog(null,
-					"Tenga cuidado, se eliminará el valor seleccionado: " + puntoBorrar, "¡CUIDADO!",
+					"Tenga cuidado, se eliminarï¿½ el valor seleccionado: " + puntoBorrar, "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 
 			if (JOptionPane.OK_OPTION == punto) {
@@ -218,7 +218,7 @@ public class ConexionBD {
 			}
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
@@ -232,18 +232,18 @@ public class ConexionBD {
 			Statement consulta = conexion.createStatement();
 
 			int punto = JOptionPane.showConfirmDialog(null,
-					"Tenga cuidado, se eliminará el valor seleccionado: " + puntoBorrar, "¡CUIDADO!",
+					"Tenga cuidado, se eliminarï¿½ el valor seleccionado: " + puntoBorrar, "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 
 			if (JOptionPane.OK_OPTION == punto) {
 				consulta.executeUpdate("delete from profesores where idProfesor = " + puntoBorrar + ";");
 				JOptionPane.showInternalMessageDialog(null, "El profesor seleccionado se ha borrado correctamente");
 			} else if (JOptionPane.NO_OPTION == punto) {
-				JOptionPane.showInternalMessageDialog(null, "Ningún profesor se ha llegado a borrar");
+				JOptionPane.showInternalMessageDialog(null, "Ningï¿½n profesor se ha llegado a borrar");
 			}
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 			e.printStackTrace();
 		}
@@ -275,7 +275,7 @@ public class ConexionBD {
 					+ " fechaNacimiento = '" + filtroModificar.getFechaNacimiento() + "' WHERE idAlumno = " + filtroModificar.getIdAlumno() + ";");
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
@@ -304,7 +304,7 @@ public class ConexionBD {
 					+ " estudiosProfesor = '" + filtroModificar.getEstudiosProfesor() + "' WHERE idProfesor = " + filtroModificar.getIdProfesor() + ";");
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
@@ -329,7 +329,7 @@ public class ConexionBD {
 					+ " horasAsignaturaAnual = " + filtroModificar.getHorasAsignaturaAnual() + " WHERE idAsignatura = " + filtroModificar.getIdAsignatura() + ";");
 			conexion.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIÓN", "¡CUIDADO!",
+			JOptionPane.showMessageDialog(null, "ERROR AL CARGAR LA BASE DE DATOS, REINICIE LA APLICACIï¿½N", "ï¿½CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
