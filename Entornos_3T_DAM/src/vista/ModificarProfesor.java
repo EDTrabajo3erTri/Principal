@@ -62,16 +62,16 @@ public class ModificarProfesor extends JPanel {
 
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(182, 101, 192, 20);
+		txtNombre.setBounds(263, 101, 192, 20);
 		add(txtNombre);
 
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre.setBounds(34, 98, 138, 20);
+		lblNombre.setBounds(115, 98, 138, 20);
 		add(lblNombre);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 165, 738, 111);
+		scrollPane.setBounds(70, 158, 849, 205);
 		add(scrollPane);
 
 		table = new JTable();
@@ -90,76 +90,76 @@ public class ModificarProfesor extends JPanel {
 
 		table.setModel(new DefaultTableModel(nombresTabla, arrProfesores.size()));
 
-		btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("BUSCAR");
 		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnBuscar.setBackground(Color.WHITE);
-		btnBuscar.setBounds(445, 86, 116, 35);
+		btnBuscar.setBounds(526, 86, 116, 35);
 		add(btnBuscar);
 
 		lblNombre_2 = new JLabel("Nombre:");
 		lblNombre_2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre_2.setBounds(34, 295, 138, 20);
+		lblNombre_2.setBounds(115, 398, 138, 20);
 		add(lblNombre_2);
 
 		txtNombre_2 = new JTextField();
 		txtNombre_2.setColumns(10);
-		txtNombre_2.setBounds(180, 298, 192, 20);
+		txtNombre_2.setBounds(261, 401, 192, 20);
 		add(txtNombre_2);
 
 		lblPrimerApellido = new JLabel("Primer Apellido:");
 		lblPrimerApellido.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblPrimerApellido.setBounds(34, 326, 138, 20);
+		lblPrimerApellido.setBounds(115, 429, 138, 20);
 		add(lblPrimerApellido);
 
 		lblSegundoApellido = new JLabel("Segundo Apellido:");
 		lblSegundoApellido.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblSegundoApellido.setBounds(34, 357, 138, 20);
+		lblSegundoApellido.setBounds(115, 459, 138, 20);
 		add(lblSegundoApellido);
 
 		txtSegundoApellido = new JTextField();
 		txtSegundoApellido.setColumns(10);
-		txtSegundoApellido.setBounds(180, 360, 192, 20);
+		txtSegundoApellido.setBounds(261, 462, 192, 20);
 		add(txtSegundoApellido);
 
 		txtPrimerApellido = new JTextField();
 		txtPrimerApellido.setColumns(10);
-		txtPrimerApellido.setBounds(180, 329, 192, 20);
+		txtPrimerApellido.setBounds(261, 431, 192, 20);
 		add(txtPrimerApellido);
 
-		btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("MODIFICAR");
 		btnModificar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(605, 86, 121, 35);
+		btnModificar.setBounds(686, 86, 159, 35);
 		add(btnModificar);
 
 		lblDNI = new JLabel("DNI:");
 		lblDNI.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblDNI.setBounds(424, 360, 138, 20);
+		lblDNI.setBounds(505, 462, 138, 20);
 		add(lblDNI);
 
 		lblTelefono = new JLabel("Telefono");
 		lblTelefono.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblTelefono.setBounds(424, 295, 138, 20);
+		lblTelefono.setBounds(505, 397, 138, 20);
 		add(lblTelefono);
 
 		lblEstudios = new JLabel("Estudios:");
 		lblEstudios.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblEstudios.setBounds(424, 326, 138, 20);
+		lblEstudios.setBounds(505, 428, 138, 20);
 		add(lblEstudios);
 
 		txtEstudios = new JTextField();
 		txtEstudios.setColumns(10);
-		txtEstudios.setBounds(572, 329, 192, 20);
+		txtEstudios.setBounds(653, 431, 192, 20);
 		add(txtEstudios);
 
 		txtTelefono = new JTextField();
 		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(572, 298, 192, 20);
+		txtTelefono.setBounds(653, 400, 192, 20);
 		add(txtTelefono);
 
 		txtDNI = new JTextField();
 		txtDNI.setColumns(10);
-		txtDNI.setBounds(572, 360, 192, 20);
+		txtDNI.setBounds(653, 462, 192, 20);
 		add(txtDNI);
 
 		btnBuscar.addActionListener(new ActionListener() {

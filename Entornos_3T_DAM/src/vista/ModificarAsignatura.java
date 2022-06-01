@@ -64,16 +64,16 @@ public class ModificarAsignatura extends JPanel {
 
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(182, 101, 192, 20);
+		txtNombre.setBounds(263, 101, 192, 20);
 		add(txtNombre);
 
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre.setBounds(34, 98, 138, 20);
+		lblNombre.setBounds(115, 98, 138, 20);
 		add(lblNombre);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 165, 738, 111);
+		scrollPane.setBounds(70, 158, 849, 205);
 		add(scrollPane);
 
 		table = new JTable();
@@ -90,56 +90,56 @@ public class ModificarAsignatura extends JPanel {
 
 		table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
 
-		btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("BUSCAR");
 		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnBuscar.setBackground(Color.WHITE);
-		btnBuscar.setBounds(445, 86, 116, 35);
+		btnBuscar.setBounds(526, 86, 116, 35);
 		add(btnBuscar);
 
-		btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("MODIFICAR");
 		btnModificar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(605, 86, 120, 35);
+		btnModificar.setBounds(686, 86, 159, 35);
 		add(btnModificar);
 
 		lblNombre_2 = new JLabel("Nombre:");
 		lblNombre_2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre_2.setBounds(34, 316, 68, 20);
+		lblNombre_2.setBounds(115, 412, 68, 20);
 		add(lblNombre_2);
 
 		lblCurso = new JLabel("Curso:");
 		lblCurso.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblCurso.setBounds(34, 358, 50, 20);
+		lblCurso.setBounds(115, 454, 50, 20);
 		add(lblCurso);
 
 		txtNombre_2 = new JTextField();
 		txtNombre_2.setColumns(10);
-		txtNombre_2.setBounds(139, 316, 192, 20);
+		txtNombre_2.setBounds(220, 412, 192, 20);
 		add(txtNombre_2);
 
 		txtCurso = new JTextField();
 		txtCurso.setColumns(10);
-		txtCurso.setBounds(139, 358, 192, 20);
+		txtCurso.setBounds(220, 454, 192, 20);
 		add(txtCurso);
 
 		lblHorasSemanales = new JLabel("Horas Semanales:");
 		lblHorasSemanales.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblHorasSemanales.setBounds(385, 316, 138, 20);
+		lblHorasSemanales.setBounds(466, 412, 138, 20);
 		add(lblHorasSemanales);
 
 		txtHorasSemanales = new JTextField();
 		txtHorasSemanales.setColumns(10);
-		txtHorasSemanales.setBounds(533, 321, 192, 20);
+		txtHorasSemanales.setBounds(614, 417, 192, 20);
 		add(txtHorasSemanales);
 
 		lblHorasAnuales = new JLabel("Horas Anuales:");
 		lblHorasAnuales.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblHorasAnuales.setBounds(385, 360, 138, 20);
+		lblHorasAnuales.setBounds(466, 456, 138, 20);
 		add(lblHorasAnuales);
 
 		txtHorasAnuales = new JTextField();
 		txtHorasAnuales.setColumns(10);
-		txtHorasAnuales.setBounds(533, 363, 192, 20);
+		txtHorasAnuales.setBounds(614, 459, 192, 20);
 		add(txtHorasAnuales);
 
 		btnBuscar.addActionListener(new ActionListener() {
@@ -197,15 +197,16 @@ public class ModificarAsignatura extends JPanel {
 
 				if (JOptionPane.OK_OPTION == punto) {
 					Asignatura asig = new Asignatura();
-					/*
-					 * int idAlumno = 0;
-					 * 
-					 * for (Alumno a: arrAlumnos) {
-					 * if(a.getNombreAlumno().equals(table.getValueAt(table.getSelectedRow(),
-					 * 1).toString())) { idAlumno = a.getIdAlumno(); } }
-					 * 
-					 * alum.setIdAlumno(idAlumno);
-					 */
+					
+					int idAsignatura = 0;
+					  
+					for (Asignatura a: arrAsignaturas) {
+					if(a.getNombreAsignatura().equals(table.getValueAt(table.getSelectedRow(), 1).toString())) { 
+						idAsignatura = a.getIdAsignatura(); 
+						} 
+					}
+					  
+					asig.setIdAsignatura(idAsignatura);
 					asig.setNombreAsignatura(txtNombre_2.getText());
 					asig.setNombreCurso(txtCurso.getText());
 					asig.setHorasAsignaturaSemanal(Integer.parseInt(txtHorasSemanales.getText().toString()));

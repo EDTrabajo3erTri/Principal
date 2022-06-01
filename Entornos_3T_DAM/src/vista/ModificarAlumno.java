@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import com.toedter.calendar.JDateChooser;
 
 /**
  * Clase ModificarAlumno del paquete vista, con sus atributos, constructores y
@@ -37,8 +38,7 @@ import java.awt.event.MouseEvent;
  */
 public class ModificarAlumno extends JPanel {
 	private JTextPane txtModificarAlumno;
-	private JTextField txtNombre, txtNombre_2, txtPrimerApellido, txtSegundoApellido, txtDNI, txtDireccion,
-			txtFechaNacimiento, txtTelefono;
+	private JTextField txtNombre, txtNombre_2, txtPrimerApellido, txtSegundoApellido, txtDNI, txtDireccion, txtTelefono;
 	private JScrollPane scrollPane;
 	private JTable table;
 	private JLabel lblNombre, lblNombre_1, lblPrimerApellido, lblSegundoApellido, lblDNI, lblDireccion,
@@ -65,16 +65,16 @@ public class ModificarAlumno extends JPanel {
 
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(182, 101, 192, 20);
+		txtNombre.setBounds(263, 101, 192, 20);
 		add(txtNombre);
 
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre.setBounds(34, 98, 138, 20);
+		lblNombre.setBounds(115, 98, 138, 20);
 		add(lblNombre);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 165, 738, 111);
+		scrollPane.setBounds(70, 158, 849, 205);
 		add(scrollPane);
 
 		table = new JTable();
@@ -95,87 +95,86 @@ public class ModificarAlumno extends JPanel {
 
 		table.setModel(new DefaultTableModel(nombresTabla, arrAlumnos.size()));
 
-		btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("BUSCAR");
 		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnBuscar.setBackground(Color.WHITE);
-		btnBuscar.setBounds(445, 86, 116, 35);
+		btnBuscar.setBounds(526, 86, 116, 35);
 		add(btnBuscar);
 
 		lblNombre_1 = new JLabel("Nombre:");
 		lblNombre_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre_1.setBounds(34, 295, 138, 20);
+		lblNombre_1.setBounds(117, 393, 138, 20);
 		add(lblNombre_1);
 
 		txtNombre_2 = new JTextField();
 		txtNombre_2.setColumns(10);
-		txtNombre_2.setBounds(180, 298, 192, 20);
+		txtNombre_2.setBounds(263, 396, 192, 20);
 		add(txtNombre_2);
 
 		lblPrimerApellido = new JLabel("Primer Apellido:");
 		lblPrimerApellido.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblPrimerApellido.setBounds(34, 326, 138, 20);
+		lblPrimerApellido.setBounds(117, 424, 138, 20);
 		add(lblPrimerApellido);
 
 		lblSegundoApellido = new JLabel("Segundo Apellido:");
 		lblSegundoApellido.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblSegundoApellido.setBounds(34, 357, 138, 20);
+		lblSegundoApellido.setBounds(117, 455, 138, 20);
 		add(lblSegundoApellido);
 
 		txtSegundoApellido = new JTextField();
 		txtSegundoApellido.setColumns(10);
-		txtSegundoApellido.setBounds(180, 360, 192, 20);
+		txtSegundoApellido.setBounds(263, 458, 192, 20);
 		add(txtSegundoApellido);
 
 		txtPrimerApellido = new JTextField();
 		txtPrimerApellido.setColumns(10);
-		txtPrimerApellido.setBounds(180, 329, 192, 20);
+		txtPrimerApellido.setBounds(263, 427, 192, 20);
 		add(txtPrimerApellido);
 
-		btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("MODIFICAR");
 		btnModificar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(605, 86, 143, 35);
+		btnModificar.setBounds(686, 86, 159, 35);
 		add(btnModificar);
 
 		lblDNI = new JLabel("DNI:");
 		lblDNI.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblDNI.setBounds(32, 388, 138, 20);
+		lblDNI.setBounds(115, 486, 138, 20);
 		add(lblDNI);
 
 		lblDireccion = new JLabel("Direccion:");
 		lblDireccion.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblDireccion.setBounds(424, 295, 138, 20);
+		lblDireccion.setBounds(507, 393, 138, 20);
 		add(lblDireccion);
 
 		lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
 		lblFechaNacimiento.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblFechaNacimiento.setBounds(424, 326, 138, 20);
+		lblFechaNacimiento.setBounds(507, 424, 138, 20);
 		add(lblFechaNacimiento);
 
 		lblTelefono = new JLabel("Telefono:");
 		lblTelefono.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblTelefono.setBounds(424, 357, 138, 20);
+		lblTelefono.setBounds(507, 455, 138, 20);
 		add(lblTelefono);
 
 		txtTelefono = new JTextField();
 		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(572, 360, 192, 20);
+		txtTelefono.setBounds(655, 458, 192, 20);
 		add(txtTelefono);
-
-		txtFechaNacimiento = new JTextField();
-		txtFechaNacimiento.setColumns(10);
-		txtFechaNacimiento.setBounds(572, 329, 192, 20);
-		add(txtFechaNacimiento);
 
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(572, 298, 192, 20);
+		txtDireccion.setBounds(655, 396, 192, 20);
 		add(txtDireccion);
 
 		txtDNI = new JTextField();
 		txtDNI.setColumns(10);
-		txtDNI.setBounds(180, 388, 192, 20);
+		txtDNI.setBounds(263, 486, 192, 20);
 		add(txtDNI);
+		
+		JDateChooser calendar = new JDateChooser();
+		calendar.setBounds(655, 428, 192, 19);
+		add(calendar);
 
 		btnBuscar.addActionListener(new ActionListener() {
 			/**
@@ -216,7 +215,7 @@ public class ModificarAlumno extends JPanel {
 				txtDNI.setText(table.getValueAt(filaseleccionada, 3).toString());
 				txtDireccion.setText(table.getValueAt(filaseleccionada, 4).toString());
 				txtTelefono.setText(table.getValueAt(filaseleccionada, 5).toString());
-				txtFechaNacimiento.setText(table.getValueAt(filaseleccionada, 6).toString());
+				calendar.getJCalendar().getDate().setText(table.getValueAt(filaseleccionada, 6).toString());
 
 				TableColumnModel columnaModelo = table.getColumnModel();
 				table.getColumnModel().getColumn(0).setPreferredWidth(75);
@@ -241,7 +240,6 @@ public class ModificarAlumno extends JPanel {
 
 				if (JOptionPane.OK_OPTION == punto) {
 					Alumno alum = new Alumno();
-					int idAlumnoModificar = 0;
 					int idAlumno = 0;
 
 					for (Alumno alumno : arrAlumnos) {
@@ -250,6 +248,7 @@ public class ModificarAlumno extends JPanel {
 							break;
 						}
 					}
+					System.out.println(idAlumno);
 
 					alum.setIdAlumno(idAlumno);
 					alum.setNombreAlumno(txtNombre_2.getText());
@@ -257,7 +256,7 @@ public class ModificarAlumno extends JPanel {
 					alum.setApellido2Alumno(txtSegundoApellido.getText());
 					alum.setDniAlumno(txtDNI.getText());
 					alum.setDireccionAlumno(txtDireccion.getText());
-					// alum.setFechaNacimiento();
+					alum.setFechaNacimiento(calendar.getJCalendar().getDate());
 					alum.setTelefonoAlumno(txtTelefono.getText());
 
 					bd.modificarAlumno(alum);

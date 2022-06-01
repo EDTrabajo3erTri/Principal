@@ -36,7 +36,7 @@ public class BorrarProfesor extends JPanel {
 	private JTextField txtNombre;
 	private JScrollPane scrollPane;
 	private JTable table;
-	private JButton btnBuscar, btnLimpiar, btnEliminar;
+	private JButton btnBuscar, btnLimpiar;
 	
 	ConexionBD bd = new ConexionBD();
 	ArrayList<Profesor> arrProfesores = new ArrayList();
@@ -58,16 +58,16 @@ public class BorrarProfesor extends JPanel {
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(182, 101, 192, 20);
+		txtNombre.setBounds(263, 101, 192, 20);
 		add(txtNombre);
 		
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre.setBounds(34, 98, 138, 20);
+		lblNombre.setBounds(115, 98, 138, 20);
 		add(lblNombre);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 165, 738, 220);
+		scrollPane.setBounds(70, 158, 849, 320);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -88,20 +88,14 @@ public class BorrarProfesor extends JPanel {
 		btnBuscar = new JButton("BUSCAR");
 		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnBuscar.setBackground(Color.WHITE);
-		btnBuscar.setBounds(445, 86, 116, 35);
+		btnBuscar.setBounds(526, 86, 116, 35);
 		add(btnBuscar);
 				
 		btnLimpiar = new JButton("LIMPIAR");
 		btnLimpiar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnLimpiar.setBackground(Color.WHITE);
-		btnLimpiar.setBounds(622, 86, 116, 35);
+		btnLimpiar.setBounds(703, 86, 116, 35);
 		add(btnLimpiar);
-		
-		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		btnEliminar.setBackground(Color.WHITE);
-		btnEliminar.setBounds(445, 120, 123, 35);
-		add(btnEliminar);
 
 		btnBuscar.addActionListener(new ActionListener() {
 			/**
@@ -139,14 +133,14 @@ public class BorrarProfesor extends JPanel {
 			}
 		});
 
-		btnEliminar.addMouseListener(new MouseAdapter() {
+		table.addMouseListener(new MouseAdapter() {
 			/**
-			 * Con el botón de Eliminar, al pulsarlo el usuario, la aplicación le preguntará al usuario si 
+			 * Con el evento de la tabla, al pulsarlo el usuario, la aplicación le preguntará al usuario si 
 			 * 'está seguro de eliminar la fila seleccionada'. Dependiendo de su respuesta, lo eliminará o no.
 			 */
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (e.getClickCount() == 1) {
+				if (e.getClickCount() == 2) {
 					int indice = table.rowAtPoint(e.getPoint());
 					int idBorrarProfesor = 0;
 					for(Profesor prof: arrProfesores) {

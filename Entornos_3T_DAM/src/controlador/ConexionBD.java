@@ -246,9 +246,8 @@ public class ConexionBD {
 			Statement consulta = conexion.createStatement();
 
 			int punto = JOptionPane.showConfirmDialog(null,
-					"Tenga cuidado, se eliminarï¿½ el valor seleccionado: " + puntoBorrar, "ï¿½CUIDADO!",
+					"Tenga cuidado, se eliminará el valor seleccionado: " + puntoBorrar, "¡CUIDADO!",
 					JOptionPane.INFORMATION_MESSAGE);
-
 			if (JOptionPane.OK_OPTION == punto) {
 				consulta.executeUpdate("delete from asignaturas where idAsignatura = " + puntoBorrar + ";");
 				JOptionPane.showInternalMessageDialog(null, "La asignatura seleccionada se ha borrado correctamente");

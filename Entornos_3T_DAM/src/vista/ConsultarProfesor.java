@@ -35,7 +35,7 @@ public class ConsultarProfesor extends JPanel {
 	private JTextField txtNombre;
 	private JScrollPane scrollPane;
 	private JTable table;
-	private JButton btnBuscar, btnBorrar;
+	private JButton btnBuscar, btnLimpiar;
 	
 	ConexionBD bd = new ConexionBD();
 	ArrayList<Profesor> arrProfesores = new ArrayList();
@@ -57,16 +57,16 @@ public class ConsultarProfesor extends JPanel {
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(182, 101, 192, 20);
+		txtNombre.setBounds(263, 101, 192, 20);
 		add(txtNombre);
 		
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre.setBounds(34, 98, 138, 20);
+		lblNombre.setBounds(115, 98, 138, 20);
 		add(lblNombre);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 165, 738, 220);
+		scrollPane.setBounds(70, 158, 849, 320);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -85,17 +85,17 @@ public class ConsultarProfesor extends JPanel {
 				
 		table.setModel(new DefaultTableModel(nombresTabla, arrProfesores.size()));
 				
-		btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("BUSCAR");
 		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnBuscar.setBackground(Color.WHITE);
-		btnBuscar.setBounds(445, 86, 116, 35);
+		btnBuscar.setBounds(526, 86, 116, 35);
 		add(btnBuscar);
 				
-		btnBorrar = new JButton("Borrar");
-		btnBorrar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		btnBorrar.setBackground(Color.WHITE);
-		btnBorrar.setBounds(622, 86, 116, 35);
-		add(btnBorrar);
+		btnLimpiar = new JButton("LIMPIAR");
+		btnLimpiar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		btnLimpiar.setBackground(Color.WHITE);
+		btnLimpiar.setBounds(703, 86, 116, 35);
+		add(btnLimpiar);
 		
 		/**
 		 * Evento que al accionarse, realiza una consulta de la BD y carga la información en la tabla.
@@ -122,7 +122,7 @@ public class ConsultarProfesor extends JPanel {
 		/**
 		 * Evento que al accionarse limpia todos los datos de la tabla.
 		 */
-		btnBorrar.addActionListener(new ActionListener() {
+		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int valor = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres limpiar los datos de la tabla y el texto intoducido?", "¡CUIDADO!", JOptionPane.YES_NO_OPTION);
 				
