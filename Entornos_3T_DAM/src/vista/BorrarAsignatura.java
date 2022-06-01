@@ -47,7 +47,7 @@ public class BorrarAsignatura extends JPanel {
 	public BorrarAsignatura() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1000, 600);
 		
 		txtBorrarAsignatura = new JTextPane();
 		txtBorrarAsignatura.setText("Borrar Asignatura");

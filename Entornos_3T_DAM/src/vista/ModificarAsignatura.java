@@ -53,7 +53,7 @@ public class ModificarAsignatura extends JPanel {
 	public ModificarAsignatura() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1000, 600);
 
 		txtModificarAsignatura = new JTextPane();
 		txtModificarAsignatura.setText("Modificar Asignatura");

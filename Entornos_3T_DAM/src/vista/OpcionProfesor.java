@@ -52,7 +52,7 @@ public class OpcionProfesor extends JFrame {
 	 */
 	public OpcionProfesor() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1000, 600);
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

@@ -41,7 +41,7 @@ public class ConsultarProfesor extends JPanel {
 	public ConsultarProfesor() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1000, 600);
 		
 		txtConsultarProfesor = new JTextPane();
 		txtConsultarProfesor.setText("Consultar Profesor");

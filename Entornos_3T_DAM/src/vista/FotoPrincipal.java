@@ -20,11 +20,11 @@ public class FotoPrincipal extends JPanel {
 	public FotoPrincipal() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1000, 600);
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("Img/Logojuan.jpg"));
-		lblNewLabel.setBounds(192, 0, 608, 446);
+		lblNewLabel.setBounds(281, 50, 608, 446);
 		add(lblNewLabel);
 		
 

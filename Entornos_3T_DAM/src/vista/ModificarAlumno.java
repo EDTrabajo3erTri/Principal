@@ -53,7 +53,7 @@ public class ModificarAlumno extends JPanel {
 	public ModificarAlumno() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1000, 600);
 
 		txtModificarAlumno = new JTextPane();
 		txtModificarAlumno.setText("Modificar Alumno");

@@ -30,7 +30,7 @@ import com.toedter.calendar.JDateChooser;
  */
 public class AnadirAlumno extends JPanel {
 	private JTextPane txtAgregarAlumno;
-	private JTextField txtNombre, txtApellido1, txtApellido2, txtDNI, txtDireccion, txtFechaNacimiento, txtTelefono;
+	private JTextField txtNombre, txtApellido1, txtApellido2, txtDNI, txtDireccion, txtTelefono;
 	private JLabel lblNombre, lblApellido1, lblApellido2, lblDNI, lblDireccion, lblFechaNacimiento, lblTelefono, lblLogoJUANXXIII;
 	private JButton btnAgregar, btnLimpiar;
 	private final JDateChooser calendar = new JDateChooser();
@@ -44,102 +44,97 @@ public class AnadirAlumno extends JPanel {
 	public AnadirAlumno() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1000, 600);
 		
 		lblLogoJUANXXIII = new JLabel("");
 		lblLogoJUANXXIII.setIcon(new ImageIcon("img/Logojuan.jpg"));
-		lblLogoJUANXXIII.setBounds(385, 53, 389, 360);
+		lblLogoJUANXXIII.setBounds(508, 111, 389, 360);
 		add(lblLogoJUANXXIII);
 		
 		txtAgregarAlumno = new JTextPane();
 		txtAgregarAlumno.setEditable(false);
 		txtAgregarAlumno.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
 		txtAgregarAlumno.setText("Agregar Alumno");
-		txtAgregarAlumno.setBounds(74, 11, 257, 54);
+		txtAgregarAlumno.setBounds(84, 49, 257, 54);
 		add(txtAgregarAlumno);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(183, 123, 192, 20);
+		txtNombre.setBounds(232, 162, 192, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtApellido1 = new JTextField();
 		txtApellido1.setColumns(10);
-		txtApellido1.setBounds(183, 161, 192, 20);
+		txtApellido1.setBounds(232, 200, 192, 20);
 		add(txtApellido1);
 		
 		txtApellido2 = new JTextField();
 		txtApellido2.setColumns(10);
-		txtApellido2.setBounds(183, 199, 192, 20);
+		txtApellido2.setBounds(232, 238, 192, 20);
 		add(txtApellido2);
 		
 		lblApellido2 = new JLabel("Segundo Apellido:");
 		lblApellido2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblApellido2.setBounds(35, 196, 138, 20);
+		lblApellido2.setBounds(84, 235, 138, 20);
 		add(lblApellido2);
 		
 		lblApellido1 = new JLabel("Primer Apellido:");
 		lblApellido1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblApellido1.setBounds(35, 158, 138, 20);
+		lblApellido1.setBounds(84, 197, 138, 20);
 		add(lblApellido1);
 		
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblNombre.setBounds(35, 120, 138, 20);
+		lblNombre.setBounds(84, 159, 138, 20);
 		add(lblNombre);
 		
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.setBackground(Color.WHITE);
 		btnAgregar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
-		btnAgregar.setBounds(35, 378, 116, 35);
+		btnAgregar.setBounds(84, 417, 116, 35);
 		add(btnAgregar);
 		
 		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnLimpiar.setBackground(Color.WHITE);
-		btnLimpiar.setBounds(230, 378, 116, 35);
+		btnLimpiar.setBounds(279, 417, 116, 35);
 		add(btnLimpiar);
 		
 		lblDNI = new JLabel("DNI:");
 		lblDNI.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblDNI.setBounds(35, 230, 138, 20);
+		lblDNI.setBounds(84, 269, 138, 20);
 		add(lblDNI);
 		
 		txtDNI = new JTextField();
 		txtDNI.setColumns(10);
-		txtDNI.setBounds(183, 230, 192, 20);
+		txtDNI.setBounds(232, 269, 192, 20);
 		add(txtDNI);
 		
 		lblDireccion = new JLabel("Direccion:");
 		lblDireccion.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblDireccion.setBounds(35, 261, 138, 20);
+		lblDireccion.setBounds(84, 300, 138, 20);
 		add(lblDireccion);
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(183, 260, 192, 20);
+		txtDireccion.setBounds(232, 299, 192, 20);
 		add(txtDireccion);
 		
 		lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
 		lblFechaNacimiento.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblFechaNacimiento.setBounds(35, 292, 138, 20);
+		lblFechaNacimiento.setBounds(84, 331, 138, 20);
 		add(lblFechaNacimiento);
-		
-		txtFechaNacimiento = new JTextField();
-		txtFechaNacimiento.setColumns(10);
-		txtFechaNacimiento.setBounds(197, 450, 192, 20);
-		add(txtFechaNacimiento);
 		
 		lblTelefono = new JLabel("Telefono:");
 		lblTelefono.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
-		lblTelefono.setBounds(35, 323, 138, 20);
+		lblTelefono.setBounds(84, 362, 138, 20);
 		add(lblTelefono);
 		
 		txtTelefono = new JTextField();
 		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(183, 326, 192, 20);
+		txtTelefono.setBounds(232, 365, 192, 20);
 		add(txtTelefono);
-		calendar.setBounds(183, 294, 192, 20);
+		calendar.setBounds(232, 333, 192, 20);
 		add(calendar);
 
 		btnAgregar.addActionListener(new ActionListener() {
@@ -283,7 +278,6 @@ public class AnadirAlumno extends JPanel {
 					txtApellido2.setText("");
 					txtDNI.setText("");
 					txtDireccion.setText("");
-					txtFechaNacimiento.setText("");
 					txtTelefono.setText("");
 				}
 			}

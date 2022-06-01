@@ -41,7 +41,7 @@ public class Frm_menu extends JFrame {
 	 */
 	public Frm_menu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,12 +67,12 @@ public class Frm_menu extends JFrame {
                     ventana.setVisible(true);
                     dispose();
                 }else {
-                	JOptionPane.showMessageDialog(null, "El usuario o la contrasena son incorrectos :(", "ERROR 404", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "El usuario o la contrasena son incorrectos", "ERROR 404", JOptionPane.INFORMATION_MESSAGE);
                 }
 			}
 		});
 		btnEnviar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
-		btnEnviar.setBounds(507, 262, 125, 21);
+		btnEnviar.setBounds(616, 333, 125, 21);
 		contentPane.add(btnEnviar);
 		
 		lblLogo = new JLabel("");
@@ -81,27 +81,27 @@ public class Frm_menu extends JFrame {
 		contentPane.add(lblLogo);
 		
 		lblInicioDeSesion = new JLabel("Inicio de Sesi\u00F3n:");
-		lblInicioDeSesion.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lblInicioDeSesion.setBounds(465, 195, 114, 14);
+		lblInicioDeSesion.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 17));
+		lblInicioDeSesion.setBounds(557, 265, 133, 21);
 		contentPane.add(lblInicioDeSesion);
 		
 		lblContrasena = new JLabel("Contrase\u00F1a:");
-		lblContrasena.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lblContrasena.setBounds(465, 220, 114, 14);
+		lblContrasena.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 17));
+		lblContrasena.setBounds(557, 290, 133, 19);
 		contentPane.add(lblContrasena);
 		
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(589, 195, 90, 14);
+		txtCorreo.setBounds(700, 271, 113, 14);
 		contentPane.add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
 		txtContrasena = new JPasswordField();
-		txtContrasena.setBounds(589, 220, 90, 14);
+		txtContrasena.setBounds(700, 295, 113, 14);
 		contentPane.add(txtContrasena);
 		
 		lblIconoPrincipal = new JLabel("");
 		lblIconoPrincipal.setIcon(new ImageIcon("img/Logojuan.jpg"));
-		lblIconoPrincipal.setBounds(28, 30, 400, 400);
+		lblIconoPrincipal.setBounds(28, 78, 400, 400);
 		contentPane.add(lblIconoPrincipal);
 		setLocationRelativeTo(null);
 	}
