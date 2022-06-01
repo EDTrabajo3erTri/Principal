@@ -29,7 +29,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Clase ModificarAlumno del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * Clase ModificarAlumno del paquete vista, con sus atributos, constructores y
+ * métodos de la aplicación.
  * 
  * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
  *
@@ -230,9 +231,9 @@ public class ModificarAlumno extends JPanel {
 
 		btnModificar.addActionListener(new ActionListener() {
 			/**
-			 * Con el botón de modificar, a la hora que el usuario lo pulse, le saltarï¿½ una
-			 * alerta de advertencia, si está seguro de modificar los siguientes datos que
-			 * se cambiaran los nuevos filtros.
+			 * Con el botón de modificar, a la hora que el usuario lo pulse, le saltarï¿½
+			 * una alerta de advertencia, si está seguro de modificar los siguientes datos
+			 * que se cambiaran los nuevos filtros.
 			 */
 			public void actionPerformed(ActionEvent e) {
 				int punto = JOptionPane.showConfirmDialog(null, "¿Los datos se van a modificar quieres continuar?",
@@ -240,13 +241,15 @@ public class ModificarAlumno extends JPanel {
 
 				if (JOptionPane.OK_OPTION == punto) {
 					Alumno alum = new Alumno();
+					int idAlumnoModificar = 0;
 					int idAlumno = 0;
 
-					/*
-					 * for (Alumno alumno : arrAlumnos) { if
-					 * (alumno.getNombreAlumno().equals(table.getValueAt(table.getSelectedRow(),
-					 * 1).toString())) { idAlumno = alumno.getIdAlumno(); break; } }
-					 */
+					for (Alumno alumno : arrAlumnos) {
+						if (alumno.getNombreAlumno().equals(table.getValueAt(table.getSelectedRow(), 1).toString())) {
+							idAlumno = alumno.getIdAlumno();
+							break;
+						}
+					}
 
 					alum.setIdAlumno(idAlumno);
 					alum.setNombreAlumno(txtNombre_2.getText());
@@ -254,7 +257,7 @@ public class ModificarAlumno extends JPanel {
 					alum.setApellido2Alumno(txtSegundoApellido.getText());
 					alum.setDniAlumno(txtDNI.getText());
 					alum.setDireccionAlumno(txtDireccion.getText());
-					//alum.setFechaNacimiento();
+					// alum.setFechaNacimiento();
 					alum.setTelefonoAlumno(txtTelefono.getText());
 
 					bd.modificarAlumno(alum);

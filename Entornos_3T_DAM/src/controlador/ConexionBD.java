@@ -12,8 +12,18 @@ import javax.swing.JOptionPane;
 import modelo.Alumno;
 import modelo.Asignatura;
 import modelo.Profesor;
-
+/**
+ * Clase ConexionBD del paquete controlador, en esta clase se encuentran los métodos que conectan el proyecto con la base de datos.
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class ConexionBD {
+	/**
+	 * Método que conecta y realiza una consulta (de la tabla alumno) del listado de la BD, a través del nombre y rellena un ArrayList con los datos recibidos.
+	 * 
+	 * @param filtro
+	 * @return
+	 */
 	public ArrayList<Alumno> cargaAlumno(String filtro) {
 			
 		ArrayList<Alumno> arrAlumnos = new ArrayList<>();
@@ -46,6 +56,12 @@ public class ConexionBD {
 		return arrAlumnos;
 	}
 	
+	/**
+	 * Método que conecta y realiza una consulta (de la tabla asignatura) del listado de la BD, a través del nombre y rellena un ArrayList con los datos recibidos. 
+	 * 
+	 * @param filtro
+	 * @return
+	 */
 	public ArrayList<Asignatura> cargaAsignatura(String filtro) {
 		
 		ArrayList<Asignatura> arrAsignaturas = new ArrayList<>();
@@ -75,6 +91,12 @@ public class ConexionBD {
 		return arrAsignaturas;
 	}
 	
+	/**
+	 * Método que conecta y realiza una consulta (de la tabla profesor) del listado de la BD, a través del nombre y rellena un ArrayList con los datos recibidos.
+	 * 
+	 * @param filtro
+	 * @return
+	 */
 	public ArrayList<Profesor> cargaProfesor(String filtro) {
 		
 		ArrayList<Profesor> arrProfesores = new ArrayList<>();
@@ -106,6 +128,10 @@ public class ConexionBD {
 		return arrProfesores;
 	}
 	
+	/**
+	 * Método que conecta y realiza un insert into (de la tabla alumno) en la BD, a través de los datos recibidos por un objeto.
+	 * @param filtro
+	 */
 	public void agregarAlumno(Alumno filtro) {
 
 		try {
@@ -129,6 +155,10 @@ public class ConexionBD {
 		}
 	}
 	
+	/**
+	 * Método que conecta y realiza un insert into (de la tabla asignatura) en la BD, a través de los datos recibidos por un objeto.
+	 * @param filtro
+	 */
 	public void agregarAsignatura(Asignatura filtro) {
 
 		try {
@@ -150,6 +180,10 @@ public class ConexionBD {
 		}
 	}
 	
+	/**
+	 * Método que conecta y realiza un insert into (de la tabla profesor) en la BD, a través de los datos recibidos por un objeto.
+	 * @param filtro
+	 */
 	public void agregarProfesor(Profesor filtro) {
 
 		try {
@@ -171,7 +205,11 @@ public class ConexionBD {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Método que conecta y realiza un delete (de la tabla alumno) en la BD, a través de los datos recibidos por un entero que recibe de la selección del alumno.
+	 * @param puntoBorrar
+	 */
 	public void borradorAlumno(int puntoBorrar) {
 
 		try {
@@ -195,7 +233,11 @@ public class ConexionBD {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Método que conecta y realiza un delete (de la tabla asignatura) en la BD, a través de los datos recibidos por un entero que recibe de la selección de la asignatura.
+	 * @param puntoBorrar
+	 */
 	public void borradorAsignatura(int puntoBorrar) {
 
 		try {
@@ -219,7 +261,11 @@ public class ConexionBD {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Método que conecta y realiza un delete (de la tabla profesor) en la BD, a través de los datos recibidos por un entero que recibe de la selección del profesor.
+	 * @param puntoBorrar
+	 */
 	public void borradorProfesor(int puntoBorrar) {
 
 		try {

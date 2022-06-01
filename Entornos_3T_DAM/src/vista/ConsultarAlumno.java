@@ -23,7 +23,12 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Clase ConsultarAlumno del paquete vista, con sus atributos, constructores y métodos de la aplicación.
+ * 
+ * @author DavidGarcia, JoseRodriguez, JoseManuelTornero.
+ *
+ */
 public class ConsultarAlumno extends JPanel {
 	private JTextPane txtConsultarAlumno;
 	private JLabel lblNombre;
@@ -91,7 +96,10 @@ public class ConsultarAlumno extends JPanel {
 		btnBorrar.setBackground(Color.WHITE);
 		btnBorrar.setBounds(622, 86, 116, 35);
 		add(btnBorrar);
-
+		
+		/**
+		 * Evento que al accionarse, realiza una consulta de la BD y carga la información en la tabla.
+		 */
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String filtroConsultaAlumno;
@@ -111,7 +119,10 @@ public class ConsultarAlumno extends JPanel {
 				}
 			}
 		});
-
+		
+		/**
+		 * Evento que al accionarse limpia todos los datos de la tabla.
+		 */
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int valor = JOptionPane.showConfirmDialog(null,
