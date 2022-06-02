@@ -82,7 +82,7 @@ public class ModificarAsignatura extends JPanel {
 
 		Vector nombresTabla = new Vector();
 
-		//nombresTabla.add("Id");
+		nombresTabla.add("Id");
 		nombresTabla.add("Nombre");
 		nombresTabla.add("Curso");
 		nombresTabla.add("Horas Semanales");
@@ -90,6 +90,15 @@ public class ModificarAsignatura extends JPanel {
 
 		table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
 
+		TableColumnModel columnaModelo = table.getColumnModel();
+		table.getColumnModel().getColumn(0).setMinWidth(0);
+		table.getColumnModel().getColumn(0).setMaxWidth(0);
+		table.getColumnModel().getColumn(0).setWidth(0);
+		table.getColumnModel().getColumn(1).setPreferredWidth(75);
+		table.getColumnModel().getColumn(2).setPreferredWidth(75);
+		table.getColumnModel().getColumn(3).setPreferredWidth(75);
+		table.getColumnModel().getColumn(3).setPreferredWidth(75);
+		
 		btnBuscar = new JButton("BUSCAR");
 		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		btnBuscar.setBackground(Color.WHITE);
@@ -153,13 +162,22 @@ public class ModificarAsignatura extends JPanel {
 				
 				arrAsignaturas = bd.cargaAsignatura(filtroConsultaAsignatura);
 				table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
+
+				TableColumnModel columnaModelo = table.getColumnModel();
+				table.getColumnModel().getColumn(0).setMinWidth(0);
+				table.getColumnModel().getColumn(0).setMaxWidth(0);
+				table.getColumnModel().getColumn(0).setWidth(0);
+				table.getColumnModel().getColumn(1).setPreferredWidth(75);
+				table.getColumnModel().getColumn(2).setPreferredWidth(75);
+				table.getColumnModel().getColumn(3).setPreferredWidth(75);
+				table.getColumnModel().getColumn(4).setPreferredWidth(75);
 					
 				for (int i=0;i<arrAsignaturas.size();i++) {
-					//table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
-					table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 0);
-					table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 1);
-					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 2);
-					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 3);
+					table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
+					table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 1);
+					table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 2);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 3);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 4);
 				}
 			}
 		});
@@ -170,17 +188,20 @@ public class ModificarAsignatura extends JPanel {
 
 				int filaseleccionada = table.rowAtPoint(e.getPoint());
 
-				// txtIdAlumno.setText(table.getValueAt(filaseleccionada, 0).toString());
-				txtNombre_2.setText(table.getValueAt(filaseleccionada, 0).toString());
-				txtCurso.setText(table.getValueAt(filaseleccionada, 1).toString());
-				txtHorasSemanales.setText(table.getValueAt(filaseleccionada, 2).toString());
-				txtHorasAnuales.setText(table.getValueAt(filaseleccionada, 3).toString());
+				//txtIdAlumno.setText(table.getValueAt(filaseleccionada, 0).toString());
+				txtNombre_2.setText(table.getValueAt(filaseleccionada, 1).toString());
+				txtCurso.setText(table.getValueAt(filaseleccionada, 2).toString());
+				txtHorasSemanales.setText(table.getValueAt(filaseleccionada, 3).toString());
+				txtHorasAnuales.setText(table.getValueAt(filaseleccionada, 4).toString());
 
 				TableColumnModel columnaModelo = table.getColumnModel();
-				table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				table.getColumnModel().getColumn(0).setMinWidth(0);
+				table.getColumnModel().getColumn(0).setMaxWidth(0);
+				table.getColumnModel().getColumn(0).setWidth(0);
 				table.getColumnModel().getColumn(1).setPreferredWidth(75);
 				table.getColumnModel().getColumn(2).setPreferredWidth(75);
 				table.getColumnModel().getColumn(3).setPreferredWidth(75);
+				table.getColumnModel().getColumn(4).setPreferredWidth(75);
 
 			}
 		});
@@ -192,43 +213,55 @@ public class ModificarAsignatura extends JPanel {
 			 * se cambiaran los nuevos filtros.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				int punto = JOptionPane.showConfirmDialog(null, "¿Los datos se van a modificar quieres continuar?",
-						"¡CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
+				try {
+					int punto = JOptionPane.showConfirmDialog(null, "¿Los datos se van a modificar quieres continuar?",
+							"¡CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
 
-				if (JOptionPane.OK_OPTION == punto) {
-					Asignatura asig = new Asignatura();
-					
-					int idAsignatura = 0;
-					  
-					for (Asignatura a: arrAsignaturas) {
-					if(a.getNombreAsignatura().equals(table.getValueAt(table.getSelectedRow(), 1).toString())) { 
-						idAsignatura = a.getIdAsignatura(); 
-						} 
+					if (JOptionPane.OK_OPTION == punto) {
+						Asignatura asig = new Asignatura();
+						
+						int idAsignatura = 0;
+						
+						for (int j = 0; j < arrAsignaturas.size(); j++) {
+							if(arrAsignaturas.get(j).getNombreAsignatura().equals(table.getValueAt(table.getSelectedRow(), 1).toString())) { 
+								idAsignatura = Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()); 
+							} 
+						}
+						  
+						asig.setIdAsignatura(idAsignatura);
+						asig.setNombreAsignatura(txtNombre_2.getText());
+						asig.setNombreCurso(txtCurso.getText());
+						asig.setHorasAsignaturaSemanal(Integer.parseInt(txtHorasSemanales.getText().toString()));
+						asig.setHorasAsignaturaAnual(Integer.parseInt(txtHorasAnuales.getText().toString()));
+
+						bd.modificarAsignatura(asig);
+						actualizarTabla();
+						
+						txtNombre_2.setText("");
+						txtCurso.setText("");
+						txtHorasSemanales.setText("");
+						txtHorasAnuales.setText("");
+
+						JOptionPane.showInternalMessageDialog(null,
+								"La asignatura seleccionada, se ha modificado correctamente");
+					} else if (JOptionPane.NO_OPTION == punto) {
+						JOptionPane.showInternalMessageDialog(null,
+								"La asignatura seleccionada, no ha llegado a modificarse");
 					}
-					  
-					asig.setIdAsignatura(idAsignatura);
-					asig.setNombreAsignatura(txtNombre_2.getText());
-					asig.setNombreCurso(txtCurso.getText());
-					asig.setHorasAsignaturaSemanal(Integer.parseInt(txtHorasSemanales.getText().toString()));
-					asig.setHorasAsignaturaAnual(Integer.parseInt(txtHorasAnuales.getText().toString()));
-
-					bd.modificarAsignatura(asig);
-					actualizarTabla();
-
+				} catch (ArrayIndexOutOfBoundsException e2) {
 					JOptionPane.showInternalMessageDialog(null,
-							"La asignatura seleccionada, se ha modificado correctamente");
-				} else if (JOptionPane.NO_OPTION == punto) {
+							"No está seleccionada la asignatura");
+				}catch (NumberFormatException e2) {
 					JOptionPane.showInternalMessageDialog(null,
-							"La asignatura seleccionada, no ha llegado a modificarse");
+							"No has buscado ningún dato en la tabla");
 				}
-
 			}
 
 			private void actualizarTabla() {
 
 				Vector nombresTabla = new Vector();
 
-				//nombresTabla.add("Id");
+				nombresTabla.add("Id");
 				nombresTabla.add("Nombre");
 				nombresTabla.add("Curso");
 				nombresTabla.add("Horas Semanales");
@@ -241,18 +274,20 @@ public class ModificarAsignatura extends JPanel {
 				table.setModel(new DefaultTableModel(nombresTabla, arrAsignaturas.size()));
 
 				TableColumnModel columnaModelo = table.getColumnModel();
-				// table.getColumnModel().getColumn(0).setPreferredWidth(75);
-				table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				table.getColumnModel().getColumn(0).setMinWidth(0);
+				table.getColumnModel().getColumn(0).setMaxWidth(0);
+				table.getColumnModel().getColumn(0).setWidth(0);
 				table.getColumnModel().getColumn(1).setPreferredWidth(75);
 				table.getColumnModel().getColumn(2).setPreferredWidth(75);
 				table.getColumnModel().getColumn(3).setPreferredWidth(75);
+				table.getColumnModel().getColumn(4).setPreferredWidth(75);
 					
 				for (int i=0;i<arrAsignaturas.size();i++) {
-					//table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
-					table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 0);
-					table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 1);
-					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 2);
-					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 3);
+					table.setValueAt(arrAsignaturas.get(i).getIdAsignatura(), i, 0);
+					table.setValueAt(arrAsignaturas.get(i).getNombreAsignatura(), i, 1);
+					table.setValueAt(arrAsignaturas.get(i).getNombreCurso(), i, 2);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaSemanal(), i, 3);
+					table.setValueAt(arrAsignaturas.get(i).getHorasAsignaturaAnual(), i, 4);
 				}
 			}
 		});

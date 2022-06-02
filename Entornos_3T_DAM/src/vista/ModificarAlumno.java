@@ -84,7 +84,7 @@ public class ModificarAlumno extends JPanel {
 
 		Vector nombresTabla = new Vector();
 
-		// nombresTabla.add("Id");
+		nombresTabla.add("Id");
 		nombresTabla.add("Nombre");
 		nombresTabla.add("Primer Apellido");
 		nombresTabla.add("Segundo Apellido");
@@ -94,6 +94,19 @@ public class ModificarAlumno extends JPanel {
 		nombresTabla.add("Fecha Nacimiento");
 
 		table.setModel(new DefaultTableModel(nombresTabla, arrAlumnos.size()));
+
+		TableColumnModel columnaModelo = table.getColumnModel();
+		
+		table.getColumnModel().getColumn(0).setMinWidth(0);
+		table.getColumnModel().getColumn(0).setMaxWidth(0);
+		table.getColumnModel().getColumn(0).setWidth(0);
+		table.getColumnModel().getColumn(1).setPreferredWidth(75);
+		table.getColumnModel().getColumn(2).setPreferredWidth(75);
+		table.getColumnModel().getColumn(3).setPreferredWidth(75);
+		table.getColumnModel().getColumn(4).setPreferredWidth(75);
+		table.getColumnModel().getColumn(5).setPreferredWidth(75);
+		table.getColumnModel().getColumn(6).setPreferredWidth(75);
+		table.getColumnModel().getColumn(7).setPreferredWidth(75);
 
 		btnBuscar = new JButton("BUSCAR");
 		btnBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
@@ -189,15 +202,28 @@ public class ModificarAlumno extends JPanel {
 				arrAlumnos = bd.cargaAlumno(filtroConsultaAlumno);
 				table.setModel(new DefaultTableModel(nombresTabla, arrAlumnos.size()));
 
+				TableColumnModel columnaModelo = table.getColumnModel();
+				
+				table.getColumnModel().getColumn(0).setMinWidth(0);
+				table.getColumnModel().getColumn(0).setMaxWidth(0);
+				table.getColumnModel().getColumn(0).setWidth(0);
+				table.getColumnModel().getColumn(1).setPreferredWidth(75);
+				table.getColumnModel().getColumn(2).setPreferredWidth(75);
+				table.getColumnModel().getColumn(3).setPreferredWidth(75);
+				table.getColumnModel().getColumn(4).setPreferredWidth(75);
+				table.getColumnModel().getColumn(5).setPreferredWidth(75);
+				table.getColumnModel().getColumn(6).setPreferredWidth(75);
+				table.getColumnModel().getColumn(7).setPreferredWidth(75);
+
 				for (int i = 0; i < arrAlumnos.size(); i++) {
-					// table.setValueAt(arrAlumnos.get(i).getIdAlumno(), i, 0);
-					table.setValueAt(arrAlumnos.get(i).getNombreAlumno(), i, 0);
-					table.setValueAt(arrAlumnos.get(i).getApellido1Alumno(), i, 1);
-					table.setValueAt(arrAlumnos.get(i).getApellido2Alumno(), i, 2);
-					table.setValueAt(arrAlumnos.get(i).getDniAlumno(), i, 3);
-					table.setValueAt(arrAlumnos.get(i).getDireccionAlumno(), i, 4);
-					table.setValueAt(arrAlumnos.get(i).getTelefonoAlumno(), i, 5);
-					table.setValueAt(arrAlumnos.get(i).getFechaNacimiento(), i, 6);
+					table.setValueAt(arrAlumnos.get(i).getIdAlumno(), i, 0);
+					table.setValueAt(arrAlumnos.get(i).getNombreAlumno(), i, 1);
+					table.setValueAt(arrAlumnos.get(i).getApellido1Alumno(), i, 2);
+					table.setValueAt(arrAlumnos.get(i).getApellido2Alumno(), i, 3);
+					table.setValueAt(arrAlumnos.get(i).getDniAlumno(), i, 4);
+					table.setValueAt(arrAlumnos.get(i).getDireccionAlumno(), i, 5);
+					table.setValueAt(arrAlumnos.get(i).getTelefonoAlumno(), i, 6);
+					table.setValueAt(arrAlumnos.get(i).getFechaNacimiento(), i, 7);
 				}
 			}
 		});
@@ -209,65 +235,75 @@ public class ModificarAlumno extends JPanel {
 				int filaseleccionada = table.rowAtPoint(e.getPoint());
 
 				// txtIdAlumno.setText(table.getValueAt(filaseleccionada, 0).toString());
-				txtNombre_2.setText(table.getValueAt(filaseleccionada, 0).toString());
-				txtPrimerApellido.setText(table.getValueAt(filaseleccionada, 1).toString());
-				txtSegundoApellido.setText(table.getValueAt(filaseleccionada, 2).toString());
-				txtDNI.setText(table.getValueAt(filaseleccionada, 3).toString());
-				txtDireccion.setText(table.getValueAt(filaseleccionada, 4).toString());
-				txtTelefono.setText(table.getValueAt(filaseleccionada, 5).toString());
-				//calendar.setText(table.getValueAt(filaseleccionada, 6).toString());
+				txtNombre_2.setText(table.getValueAt(filaseleccionada, 1).toString());
+				txtPrimerApellido.setText(table.getValueAt(filaseleccionada, 2).toString());
+				txtSegundoApellido.setText(table.getValueAt(filaseleccionada, 3).toString());
+				txtDNI.setText(table.getValueAt(filaseleccionada, 4).toString());
+				txtDireccion.setText(table.getValueAt(filaseleccionada, 5).toString());
+				txtTelefono.setText(table.getValueAt(filaseleccionada, 6).toString());
+				calendar.setDateFormatString(table.getValueAt(filaseleccionada, 7).toString());
 
 				TableColumnModel columnaModelo = table.getColumnModel();
-				table.getColumnModel().getColumn(0).setPreferredWidth(75);
+				
+				table.getColumnModel().getColumn(0).setMinWidth(0);
+				table.getColumnModel().getColumn(0).setMaxWidth(0);
+				table.getColumnModel().getColumn(0).setWidth(0);
 				table.getColumnModel().getColumn(1).setPreferredWidth(75);
 				table.getColumnModel().getColumn(2).setPreferredWidth(75);
 				table.getColumnModel().getColumn(3).setPreferredWidth(75);
 				table.getColumnModel().getColumn(4).setPreferredWidth(75);
 				table.getColumnModel().getColumn(5).setPreferredWidth(75);
+				table.getColumnModel().getColumn(6).setPreferredWidth(75);
+				table.getColumnModel().getColumn(7).setPreferredWidth(75);
 
 			}
 		});
 
 		btnModificar.addActionListener(new ActionListener() {
 			/**
-			 * Con el botón de modificar, a la hora que el usuario lo pulse, le saltarï¿½
+			 * Con el botón de modificar, a la hora que el usuario lo pulse, le saltaría
 			 * una alerta de advertencia, si está seguro de modificar los siguientes datos
 			 * que se cambiaran los nuevos filtros.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				int punto = JOptionPane.showConfirmDialog(null, "¿Los datos se van a modificar quieres continuar?",
-						"¿CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
+				try {
+					int punto = JOptionPane.showConfirmDialog(null, "¿Los datos se van a modificar quieres continuar?",
+							"¿CUIDADO!", JOptionPane.INFORMATION_MESSAGE);
 
-				if (JOptionPane.OK_OPTION == punto) {
-					Alumno alum = new Alumno();
-					int idAlumno = 0;
-
-					for (Alumno alumno : arrAlumnos) {
-						if (alumno.getNombreAlumno().equals(table.getValueAt(table.getSelectedRow(), 1).toString())) {
-							idAlumno = alumno.getIdAlumno();
-							break;
+					if (JOptionPane.OK_OPTION == punto) {
+						Alumno alum = new Alumno();
+						int idAlumno = 0;
+						
+						for (int j = 0; j < arrAlumnos.size(); j++) {
+							if(arrAlumnos.get(j).getNombreAlumno().equals(table.getValueAt(table.getSelectedRow(), 1).toString())) { 
+								idAlumno = Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()); 
+							} 
 						}
+
+						alum.setIdAlumno(idAlumno);
+						alum.setNombreAlumno(txtNombre_2.getText());
+						alum.setApellido1Alumno(txtPrimerApellido.getText());
+						alum.setApellido2Alumno(txtSegundoApellido.getText());
+						alum.setDniAlumno(txtDNI.getText());
+						alum.setDireccionAlumno(txtDireccion.getText());
+						alum.setFechaNacimiento(calendar.getJCalendar().getDate());
+						alum.setTelefonoAlumno(txtTelefono.getText());
+
+						bd.modificarAlumno(alum);
+						actualizarTabla();
+
+						JOptionPane.showInternalMessageDialog(null,
+								"El alumno seleccionado, se ha modificado correctamente");
+					} else if (JOptionPane.NO_OPTION == punto) {
+						JOptionPane.showInternalMessageDialog(null, "El alumno seleccionado, no ha llegado a modificarse");
 					}
-					System.out.println(idAlumno);
-
-					alum.setIdAlumno(idAlumno);
-					alum.setNombreAlumno(txtNombre_2.getText());
-					alum.setApellido1Alumno(txtPrimerApellido.getText());
-					alum.setApellido2Alumno(txtSegundoApellido.getText());
-					alum.setDniAlumno(txtDNI.getText());
-					alum.setDireccionAlumno(txtDireccion.getText());
-					alum.setFechaNacimiento(calendar.getJCalendar().getDate());
-					alum.setTelefonoAlumno(txtTelefono.getText());
-
-					bd.modificarAlumno(alum);
-					actualizarTabla();
-
+				} catch (ArrayIndexOutOfBoundsException e2) {
 					JOptionPane.showInternalMessageDialog(null,
-							"El alumno seleccionado, se ha modificado correctamente");
-				} else if (JOptionPane.NO_OPTION == punto) {
-					JOptionPane.showInternalMessageDialog(null, "El alumno seleccionado, no ha llegado a modificarse");
+							"No está seleccionada el alumno");
+				}catch (NumberFormatException e2) {
+					JOptionPane.showInternalMessageDialog(null,
+							"No has buscado ningún dato en la tabla");
 				}
-
 			}
 		});
 
@@ -277,7 +313,7 @@ public class ModificarAlumno extends JPanel {
 
 		Vector nombresTabla = new Vector();
 
-		// nombresTabla.add("Id");
+		nombresTabla.add("Id");
 		nombresTabla.add("Nombre");
 		nombresTabla.add("Primer Apellido");
 		nombresTabla.add("Segundo Apellido");
@@ -293,23 +329,27 @@ public class ModificarAlumno extends JPanel {
 		table.setModel(new DefaultTableModel(nombresTabla, arrAlumnos.size()));
 
 		TableColumnModel columnaModelo = table.getColumnModel();
-		// table.getColumnModel().getColumn(0).setPreferredWidth(75);
-		table.getColumnModel().getColumn(0).setPreferredWidth(75);
+		
+		table.getColumnModel().getColumn(0).setMinWidth(0);
+		table.getColumnModel().getColumn(0).setMaxWidth(0);
+		table.getColumnModel().getColumn(0).setWidth(0);
 		table.getColumnModel().getColumn(1).setPreferredWidth(75);
 		table.getColumnModel().getColumn(2).setPreferredWidth(75);
 		table.getColumnModel().getColumn(3).setPreferredWidth(75);
 		table.getColumnModel().getColumn(4).setPreferredWidth(75);
 		table.getColumnModel().getColumn(5).setPreferredWidth(75);
+		table.getColumnModel().getColumn(6).setPreferredWidth(75);
+		table.getColumnModel().getColumn(7).setPreferredWidth(75);
 
 		for (int i = 0; i < arrAlumnos.size(); i++) {
-			// table.setValueAt(arrAlumnos.get(i).getIdAlumno(), i, 0);
-			table.setValueAt(arrAlumnos.get(i).getNombreAlumno(), i, 0);
-			table.setValueAt(arrAlumnos.get(i).getApellido1Alumno(), i, 1);
-			table.setValueAt(arrAlumnos.get(i).getApellido2Alumno(), i, 2);
-			table.setValueAt(arrAlumnos.get(i).getDniAlumno(), i, 3);
-			table.setValueAt(arrAlumnos.get(i).getDireccionAlumno(), i, 4);
-			table.setValueAt(arrAlumnos.get(i).getTelefonoAlumno(), i, 5);
-			table.setValueAt(arrAlumnos.get(i).getFechaNacimiento(), i, 6);
+			table.setValueAt(arrAlumnos.get(i).getIdAlumno(), i, 0);
+			table.setValueAt(arrAlumnos.get(i).getNombreAlumno(), i, 1);
+			table.setValueAt(arrAlumnos.get(i).getApellido1Alumno(), i, 2);
+			table.setValueAt(arrAlumnos.get(i).getApellido2Alumno(), i, 3);
+			table.setValueAt(arrAlumnos.get(i).getDniAlumno(), i, 4);
+			table.setValueAt(arrAlumnos.get(i).getDireccionAlumno(), i, 5);
+			table.setValueAt(arrAlumnos.get(i).getTelefonoAlumno(), i, 6);
+			table.setValueAt(arrAlumnos.get(i).getFechaNacimiento(), i, 7);
 		}
 	}
 }
