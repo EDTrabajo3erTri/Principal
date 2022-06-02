@@ -215,7 +215,7 @@ public class ModificarAlumno extends JPanel {
 				txtDNI.setText(table.getValueAt(filaseleccionada, 3).toString());
 				txtDireccion.setText(table.getValueAt(filaseleccionada, 4).toString());
 				txtTelefono.setText(table.getValueAt(filaseleccionada, 5).toString());
-				calendar.getJCalendar().getDate().setText(table.getValueAt(filaseleccionada, 6).toString());
+				//calendar.setText(table.getValueAt(filaseleccionada, 6).toString());
 
 				TableColumnModel columnaModelo = table.getColumnModel();
 				table.getColumnModel().getColumn(0).setPreferredWidth(75);
